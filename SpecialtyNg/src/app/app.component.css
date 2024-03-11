@@ -1,0 +1,9 @@
+.image{
+  /* width: 200px; */
+  height: 500px;
+  object-fit: cover;
+}
+.btn{
+  background-color: #0000005d;
+  padding: 10px;
+}

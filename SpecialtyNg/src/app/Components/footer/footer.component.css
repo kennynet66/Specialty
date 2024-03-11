@@ -1,0 +1,27 @@
+footer {
+  background-color: #263238;
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+}
+.other-links {
+  flex-wrap: wrap;
+  display: flex;
+  width: 50%;
+  gap: 20px;
+}
+
+.logo {
+  color: #29AB87;
+}
+
+.other-links ul {
+  list-style-type: none;
+}
+.icons{
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
