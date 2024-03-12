@@ -6,7 +6,7 @@
   </div>
   <div class="form">
     <form [formGroup]="loginForm">
-      <h2 >Get back to your account</h2>
+      <h2 style="font-size: 25px;">Get back to your account</h2>
       <p>Don't have an account? <a routerLink="/register">Create one!</a></p>
       <div class="input-div m-2">
         <input type="email" placeholder="Email" class="form-control">
@@ -16,8 +16,10 @@
         <input type="password" placeholder="password" class="form-control">
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" formControlName="password" id="error">Password is required</div>
       </div>
+      <p style="text-align: center;">Or continue with</p>
       <div class="auth-options">
-        <p style="text-align: center;">Or continue with</p>
+        <div class="google"><i class="fa-brands fa-google"></i></div>
+        <div class="meta"><i class="fa-brands fa-meta"></i></div>
       </div>
       <div class="input-div m-2">
         <input type="submit" class="btn login-btn" value="Login">

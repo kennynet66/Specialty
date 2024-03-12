@@ -7,7 +7,11 @@
   <div class="form">
     <form [formGroup]="registerForm">
       <h2 >Join us today</h2>
-      <p>Already have an account? <a routerLink="/login">Login</a></p>
+      <p>Already have an account? <a routerLink="/login">Login!</a></p>
+      <div class="input-div m-2">
+        <input type="text" placeholder="Full Name" class="form-control">
+        <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" formControlName = "fullName" id="error">Email is required</div>
+      </div>
       <div class="input-div m-2">
         <input type="email" placeholder="Email" class="form-control">
         <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" formControlName = "email" id="error">Email is required</div>
@@ -16,11 +20,13 @@
         <input type="password" placeholder="password" class="form-control">
         <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" formControlName="password" id="error">Password is required</div>
       </div>
+      <p style="text-align: center;">Or continue with</p>
       <div class="auth-options">
-        <p style="text-align: center;">Or continue with</p>
+        <div class="google"><i class="fa-brands fa-google"></i></div>
+        <div class="meta"><i class="fa-brands fa-meta"></i></div>
       </div>
       <div class="input-div m-2">
-        <input type="submit" class="btn login-btn" value="Login">
+        <input type="submit" class="btn login-btn" value="Create Account">
       </div>
     </form>
   </div>

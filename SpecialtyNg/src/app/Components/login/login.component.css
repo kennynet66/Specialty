@@ -10,13 +10,16 @@
   border: none;
   color: #fff;
 }
+.login-btn:hover{
+  background-color: #00755e;
+}
 
 #error{
   color: red;
 }
 
 .form {
-  max-width: 30%;
+  width: 30%;
 }
 
 form{
@@ -55,4 +58,22 @@ form{
   background-color: red;
   text-align: center;
   color: #fff;
+}
+
+.auth-options{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 25px;
+}
+
+.google, .meta {
+  background-color: #f7f7f7;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.google:hover, .meta:hover {
+  background-color: #dbdbdb;
 }
