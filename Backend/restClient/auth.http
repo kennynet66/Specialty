@@ -1,0 +1,11 @@
+### Register user
+POST http://localhost:3900/auth/register
+Content-Type: application/json
+
+{
+    "fullName": "Kenedy Maina",
+    "email": "kennynet66@gmail.com",
+    "password": "12345678",
+    "rate": 10,
+    "industry": "fdd81c24-91ac-4151-b24f-4a7b095d1316"
+}
