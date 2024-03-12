@@ -3,10 +3,14 @@ import { LandingComponent } from './Components/landing/landing.component';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
+import { VerifyEmailComponent } from './Components/verify-email/verify-email.component';
+import { VerifyComponent } from './Components/verify/verify.component';
 
 export const routes: Routes = [
   {path: '', component: LandingComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'verify-email', component: VerifyEmailComponent},
+  {path: 'verify/:id', component: VerifyComponent},
   {path: '**', component: NotFoundComponent}
 ];

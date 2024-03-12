@@ -6,3 +6,8 @@ export interface User {
     industry: string,
     isSpecialist: Boolean
 }
+
+export interface Login {
+    email: string,
+    password: string
+}

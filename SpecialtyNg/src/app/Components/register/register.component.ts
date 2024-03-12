@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,7 @@ export class RegisterComponent {
     }, 2000);
   };
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService){
     this.registerForm = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -44,7 +45,13 @@ export class RegisterComponent {
 
   registerUser(){
     if(this.registerForm.valid){
-      console.log(this.registerForm.value);
+      this.authservice.registerUser(this.registerForm.value).subscribe(res =>{
+        if(res.success){
+          this.displaySuccess(res.success, '/verifyemail')
+        } else if (res.error) {
+          this.displayError(res.error)
+        }
+      })
     } else {
       this.displayError('Please fill in all fields correctly')
     }

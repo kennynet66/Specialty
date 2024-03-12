@@ -1,0 +1,19 @@
+.verify-email {
+  width: 100vw;
+  height: 100vh;
+  background-color: #dbdbdb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background-color: #ffffff;
+  padding: 100px;
+  border-radius: 10px;
+}
+
+.btn {
+  background-color: #29AB87;
+  color: #ffffff;
+}
