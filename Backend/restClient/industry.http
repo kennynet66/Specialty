@@ -3,5 +3,11 @@ POST http://localhost:3900/industry/new
 Content-Type: application/json
 
 {
-    "industryName": "user"
+    "industryName": "electrician"
 }
+
+### Get all industries
+GET http://localhost:3900/industry/all
+
+### Delete industry
+DELETE http://localhost:3900/industry/delete/c9546bbf-4112-41ea-aa97-76a77d2d5619

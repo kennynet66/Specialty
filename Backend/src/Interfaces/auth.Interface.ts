@@ -3,5 +3,6 @@ export interface User {
     email: string,
     password: string,
     rate: number,
-    industry: string
+    industry: string,
+    isSpecialist: Boolean
 }

@@ -3,9 +3,10 @@ POST http://localhost:3900/auth/register
 Content-Type: application/json
 
 {
-    "fullName": "Kenedy Maina",
-    "email": "kennynet66@gmail.com",
+    "fullName": "Lucy Maina",
+    "email": "lucynet66@yopmail.com",
     "password": "12345678",
     "rate": 10,
-    "industry": "fdd81c24-91ac-4151-b24f-4a7b095d1316"
+    "industry": "d6b757e3-4404-4f1a-9d54-2c7ef5bb0833",
+    "isSpecialist": 1
 }
