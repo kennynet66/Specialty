@@ -47,7 +47,7 @@ export class RegisterComponent {
     if(this.registerForm.valid){
       this.authservice.registerUser(this.registerForm.value).subscribe(res =>{
         if(res.success){
-          this.displaySuccess(res.success, '/verifyemail')
+          this.displaySuccess(res.success, '/verify-email')
         } else if (res.error) {
           this.displayError(res.error)
         }

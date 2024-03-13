@@ -1,3 +1,7 @@
-<section>
-  <h1>Email has been verified and you can proceed to login</h1>
+<section class="verify">
+  <img *ngIf="visible" src="../../../assets/loader.gif" alt="">
+  <h1 *ngIf="visible">Verifying email please wait</h1>
+  <img *ngIf="!visible" src="../../../assets/verify.gif" alt="">
+  <h1 *ngIf="!visible">Email Verified Redirecting...</h1>
+
 </section>
