@@ -17,3 +17,8 @@ export interface User {
   industry: string,
   isSpecialist: Boolean
 }
+
+export interface loginDetails{
+  email: string,
+  password: string
+}

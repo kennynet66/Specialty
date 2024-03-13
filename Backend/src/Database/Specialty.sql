@@ -1,1 +1,5 @@
 CREATE DATABASE Specialty
+
+SELECT * FROM Users
+
+UPDATE Users SET isVerified = 0 WHERE userId = 'cf492d17-3d86-4009-91e7-3995e17eb11a'

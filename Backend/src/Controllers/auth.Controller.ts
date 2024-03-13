@@ -1,10 +1,21 @@
 import { Request, Response } from "express";
-import { Login, User } from "../Interfaces/auth.Interface";
+import { Login, Token, User } from "../Interfaces/auth.Interface";
 import { registerSchema } from "../Validators/auth.Validator";
 import { sqlConfig } from "../Config/sql.Config";
 import mssql from 'mssql';
 import bcrypt from 'bcrypt';
 import { v4 } from "uuid";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+function createToken(user:Token) {
+    const token = jwt.sign(user, process.env.SECRET as string, {
+        expiresIn: 3 * 24 * 24 * 60
+    })
+    return token
+}
 
 export const registerUser = (async( req: Request, res: Response) =>{
     try {
@@ -83,8 +94,11 @@ export const loginUser = (async (req: Request, res: Response)=>{
             })
         }
 
+        const token = createToken(findUser[0])
+
         return res.status(200).json({
-            success: "Login successful"
+            success: "Login successful",
+            token
         })
     } catch (error) {
         return res.status(500).json({

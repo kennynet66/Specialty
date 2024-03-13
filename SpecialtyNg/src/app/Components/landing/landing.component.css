@@ -20,6 +20,7 @@
 .clients{
   background-color: #E6E6E6;
   /* height: 40vh; */
+  flex-wrap: wrap;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -48,11 +49,13 @@
 
 .teams {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .card{
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   align-items:  center;

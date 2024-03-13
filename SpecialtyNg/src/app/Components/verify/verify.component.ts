@@ -36,6 +36,8 @@ activateUser(){
   this.authservice.validateUser(this.userId).subscribe(res =>{
     if(res.success){
       this.visible = false;
+      this.visible1 = true;
+      this.message = res.success;
       setTimeout(() => {
         this.router.navigate(['/details']);
       }, 2000);

@@ -9,8 +9,6 @@ footer {
 .other-links {
   flex-wrap: wrap;
   display: flex;
-  width: 50%;
-  gap: 20px;
 }
 
 .logo {

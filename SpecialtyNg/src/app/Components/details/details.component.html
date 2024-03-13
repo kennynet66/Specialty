@@ -1,1 +1,21 @@
-<p>details works!</p>
+<section class="details">
+  <div class="messages">
+    <div *ngIf="errorDiv" class="error-msg" id="message">{{errorMsg}}</div>
+    <div *ngIf="successDiv" class="success-msg" id="message">{{successMsg}}</div>
+  </div>
+  <div class="forms">
+    <form [formGroup]="roleForm" class="role-form" (ngSubmit)="selectRole()">
+      <div class="input-div">
+        <input type="radio" name="role" value="user" id="" formControlName="role">
+        <p>Looking for a specialist to get the job done?</p>
+        <button class="btn">Proceed as user</button>
+      </div>
+      <div class="input-div">
+        <input type="radio" name="role" value="specialist" formControlName="role" id="">
+        <p>Looking forward to be hired?</p>
+        <button class="btn">Proceed as specialist</button>
+      </div>
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>

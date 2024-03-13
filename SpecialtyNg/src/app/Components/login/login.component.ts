@@ -3,6 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,10 +34,18 @@ export class LoginComponent {
     }, 2000);
   };
 
-  constructor(private fb: FormBuilder, private router: Router){
+  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     })
+  }
+
+  loginUser(){
+    if(this.loginForm.valid){
+      this.authservice.loginUser(this.loginForm.value)
+    } else if (!this.loginForm.valid){
+      this.displayError('Please fill in all the fields correctly')
+    }
   }
 }
