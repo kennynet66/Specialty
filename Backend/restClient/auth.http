@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "fullName": "Kenny Maina",
-    "email": "kennynet66@yopmail.com",
+    "email": "dkings@yopmail.com",
     "password": "12345678"
 }
 
@@ -13,9 +13,9 @@ POST http://localhost:3900/auth/login
 Content-Type: application/json
 
 {
-    "email": "kennynet66@yopmail.com",
+    "email": "dkings@yopmail.com",
     "password": "12345678"
 }
 
 ### validate user
-PUT http://localhost:3900/auth/validate-user/345ba806-5359-4438-826d-2444385dbc51
+PUT http://localhost:3900/auth/validate-user/19e3c4ab-b756-4aaa-86b8-387921dd6a49

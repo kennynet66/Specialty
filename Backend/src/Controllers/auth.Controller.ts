@@ -99,6 +99,16 @@ export const validateUser = (async (req: Request, res: Response) =>{
 
         const pool = await mssql.connect(sqlConfig);
 
+        const alreadyVerified = (await pool.request()
+        .input('userId', mssql.VarChar, userId)
+        .query('SELECT * FROM Users WHERE userId = @userId AND isVerified = 0')).recordset
+
+        if(alreadyVerified.length < 1) {
+            return res.status(202).json({
+                error: "Email is already verified"
+            })
+        }
+
         const result = (await pool.request()
         .input('userId', mssql.VarChar, userId)
         .query('UPDATE Users SET isVerified = 1 WHERE userId = @userId')

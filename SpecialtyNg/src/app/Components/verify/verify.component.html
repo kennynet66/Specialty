@@ -1,7 +1,11 @@
 <section class="verify">
   <img *ngIf="visible" src="../../../assets/loader.gif" alt="">
   <h1 *ngIf="visible">Verifying email please wait</h1>
-  <img *ngIf="!visible" src="../../../assets/verify.gif" alt="">
-  <h1 *ngIf="!visible">Email Verified Redirecting...</h1>
+  <img *ngIf="visible1" src="../../../assets/verify.gif" alt="">
+  <h1 *ngIf="visible1">{{message}}</h1>
+  <h1 *ngIf="visible1">Redirecting...</h1>
+  <img *ngIf="error" src="../../../assets/cancel.gif" alt="">
+  <h1 *ngIf="error">{{message}}</h1>
+  <button *ngIf="error" class="btn" routerLink="/">Back Home</button>
 
 </section>
