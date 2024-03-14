@@ -7,15 +7,16 @@ Content-Type: application/json
 }
 
 ### Update user
-PUT http://localhost:3900/users/update-details/7fc943cd-c897-448b-906c-7a2f51b53fe2
+PUT http://localhost:3900/users/update-details/9f4fdb06-4726-426a-b608-6cbc4f4bd306
 Content-Type: application/json
 
 {
-    "gender": "male",
+    "gender": "female",
     "DOB": "2/12/2024",
     "about": "I am me",
     "country": "Kenya",
     "city": "Nairobi",
+    "industry": "0c3a4c91-d3c2-4c58-9018-0919bca5be78",
     "phoneNumber": "0708530896",
     "bankAcNo": 12356789,
     "bankAcName": "Kivu branch"

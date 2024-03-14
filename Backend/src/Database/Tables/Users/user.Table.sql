@@ -15,3 +15,4 @@ CREATE TABLE Users(
 -- ALTER TABLE Users ADD isVerified
 
 SELECT * FROM Users
+SELECT * FROM Details

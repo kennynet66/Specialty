@@ -10,6 +10,7 @@ CREATE TABLE Details(
     about text,
     bankAcNo BIGINT,
     bankAcName VARCHAR(255),
+    industry VARCHAR(255)
 	CONSTRAINT fk_user_id FOREIGN KEY(userId)
 	REFERENCES Users(userId)
 )

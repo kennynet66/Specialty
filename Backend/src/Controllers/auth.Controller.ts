@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import { v4 } from "uuid";
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import { ExtendedUserRequest } from "../Middleware/verifyToken";
 
 dotenv.config();
 
@@ -114,11 +115,11 @@ export const validateUser = (async (req: Request, res: Response) =>{
 
         const pool = await mssql.connect(sqlConfig);
 
-        const alreadyVerified = (await pool.request()
+        const user = (await pool.request()
         .input('userId', mssql.VarChar, userId)
         .query('SELECT * FROM Users WHERE userId = @userId AND isVerified = 0')).recordset
 
-        if(alreadyVerified.length < 1) {
+        if(user.length < 1) {
             return res.status(202).json({
                 error: "Email is already verified"
             })
@@ -130,9 +131,12 @@ export const validateUser = (async (req: Request, res: Response) =>{
         .execute('validateUser')
         ).rowsAffected
 
+        const token = createToken(user[0])
+
         if (result[0]){
             return res.status(200).json({
-                success: "Email successfully vaildated"
+                success: "Email successfully vaildated",
+                token
             })
         } else if(result[0] < 0){
             return res.status(202).json({
@@ -142,6 +146,14 @@ export const validateUser = (async (req: Request, res: Response) =>{
     } catch (error) {
         return res.status(500).json({
             error
+        })
+    }
+})
+
+export const checkUserDetails = (async (req: ExtendedUserRequest, res: Response) => {
+    if (req.info) {
+        return res.json({
+            info: req.info
         })
     }
 })

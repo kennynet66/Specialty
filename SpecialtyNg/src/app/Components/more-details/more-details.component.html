@@ -1,41 +1,48 @@
 <section class="more-details">
+  <div *ngIf="successDiv" class="success-msg">{{successMsg}}</div>
+  <div *ngIf="errorDiv" class="error-msg">{{errorMsg}}</div>
   <div class="form">
-    <form>
+    <form [formGroup]="moreDetailsForm" (ngSubmit)="updatedetails()">
       <h2>Personal Information</h2>
       <h2>Gender</h2>
       <div class="input-div" id="gender-radio">
-        <input type="radio" name="gender" value="male" id="">
+        <input type="radio" name="gender" value="male" id="" formControlName="gender">
         <label for="">Male</label>
-        <input type="radio" name="gender" value="female" id="">
+        <input type="radio" name="gender" value="female" id="" formControlName="gender">
         <label for="">Female</label>
       </div>
       <div class="input-div" id="DOB">
         <h4>Date of birth</h4>
-        <input type="date">
+        <input type="date" formControlName="DOB">
       </div>
       <div class="input-div" id="about">
         <h2>About</h2>
-        <textarea placeholder="Tell us something about yourself"></textarea>
+        <textarea placeholder="Tell us something about yourself" formControlName="about"></textarea>
+        <select name="city" id="city" formControlName="industry">
+          <option value="">Choose your area of work</option>
+          <option *ngFor="let industry of industryArr" value="{{industry.industryId}}">{{industry.industryName}}</option>
+        </select>
       </div>
       <div class="input-div" id="address">
         <h2>Address information</h2>
-        <select name="country" id="country">
+        <select name="country" id="country" formControlName="country">
           <option value="">Select your country</option>
           <option value="kenya">Kenya</option>
           <option value="Uganda">Uganda</option>
           <option value="Tanzania">Tanzania</option>
         </select>
-        <select name="city" id="city">
+        <select name="city" id="city" formControlName="city" >
           <option value="">Choose your city</option>
           <option value="Nairobi">Nairobi</option>
           <option value="Kampala">Kampala</option>
           <option value="Dodoma">Dodoma</option>
         </select>
+        <input type="text" placeholder="Phone number" formControlName="phoneNumber">
       </div>
       <div class="input-div" id="bank-creds">
         <h2>Bank credentials</h2>
-        <input type="number" min="0" placeholder="Account number">
-        <input type="text" placeholder="Account name">
+        <input type="number" min="0" placeholder="Account number" formControlName="bankAcNo">
+        <input type="text" placeholder="Account name" formControlName="bankAcName">
       </div>
       <input type="submit" value="Save Details" class="btn">
     </form>

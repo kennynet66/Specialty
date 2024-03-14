@@ -23,6 +23,10 @@ constructor(private route: ActivatedRoute, private authservice: AuthService, pri
   this.getUserId();
 }
 
+saveToken(token: string){
+  localStorage.setItem('specialty_token', token);
+}
+
 getUserId(){
   this.route.params.subscribe((params)=>{
     this.userId =params['id']
@@ -35,6 +39,7 @@ getUserId(){
 activateUser(){
   this.authservice.validateUser(this.userId).subscribe(res =>{
     if(res.success){
+      this.saveToken(res.token);
       this.visible = false;
       this.visible1 = true;
       this.message = res.success;

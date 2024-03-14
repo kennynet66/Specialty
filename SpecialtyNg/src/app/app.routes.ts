@@ -8,6 +8,7 @@ import { VerifyComponent } from './Components/verify/verify.component';
 import { DetailsComponent } from './Components/details/details.component';
 import { UserDashboardComponent } from './Components/Users/user-dashboard/user-dashboard.component';
 import { MoreDetailsComponent } from './Components/more-details/more-details.component';
+import { SpecialistDashboardComponent } from './Components/Specialist/specialist-dashboard/specialist-dashboard.component';
 
 export const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
   {path: 'details/:id', component: DetailsComponent},
   {path: 'user-dashboard', component: UserDashboardComponent},
   {path: 'more-details/:id', component: MoreDetailsComponent},
+  {path: 'specialist-dashboard', component: SpecialistDashboardComponent},
   {path: '**', component: NotFoundComponent}
 ];

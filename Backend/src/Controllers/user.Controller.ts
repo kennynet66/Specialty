@@ -33,7 +33,6 @@ export const updateDetails = (async( req: Request, res: Response)=>{
         const userId = req.params.id;
 
         const userDetails: UpdateUser = req.body;
-
         const { error } = updateSchema.validate(req.body);
 
         if(error) {
@@ -51,6 +50,7 @@ export const updateDetails = (async( req: Request, res: Response)=>{
         .input('about', mssql.VarChar, userDetails.about.trim().toLocaleLowerCase())
         .input('country', mssql.VarChar, userDetails.country.trim().toLocaleLowerCase())
         .input('city', mssql.VarChar, userDetails.city.trim().toLocaleLowerCase())
+        .input('industry', mssql.VarChar, userDetails.industry)
         .input('phoneNumber', mssql.VarChar, userDetails.phoneNumber.trim())
         .input('bankAcNo', mssql.BigInt, userDetails.bankAcNo)
         .input('bankAcName', mssql.VarChar, userDetails.bankAcName.trim().toLocaleLowerCase())
@@ -58,7 +58,7 @@ export const updateDetails = (async( req: Request, res: Response)=>{
         ).rowsAffected
 
         return res.status(200).json({
-            success: "User details updated successfully"
+            success: "Details updated successfully"
         })
 
     } catch (error) {

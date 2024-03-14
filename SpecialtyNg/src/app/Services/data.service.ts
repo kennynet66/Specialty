@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { allIndustriesResponse } from '../Interfaces/data.Interface';
+import { allIndustriesResponse, updateUserDetails } from '../Interfaces/data.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +15,9 @@ export class DataService {
 
   setRole(userId: string, role:string){
     return this.http.put<{success: string}>(`http://localhost:3900/users/set-role/${userId}`, role)
+  }
+
+  updateUser(userDetails: updateUserDetails, userId: string){
+    return this.http.put<{success: string}>(`http://localhost:3900/users/update-details/${userId}`, userDetails)
   }
 }

@@ -13,3 +13,15 @@ export interface Industry {
   industryName: string,
   industryImage: string
 }
+
+export interface updateUserDetails {
+  gender: string,
+  DOB: string,
+  about: string
+  country: string,
+  city: string,
+  phoneNumber: string,
+  bankAcNo: number,
+  industry: string,
+  bankAcName: string
+}

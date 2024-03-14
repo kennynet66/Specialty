@@ -6,5 +6,6 @@ export interface UpdateUser {
     city: string,
     phoneNumber: string,
     bankAcNo: number,
+    industry: string,
     bankAcName: string
 }
