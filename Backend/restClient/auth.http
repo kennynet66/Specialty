@@ -17,5 +17,5 @@ Content-Type: application/json
     "password": "12345678"
 }
 
-### validate user
-PUT http://localhost:3900/auth/validate-user/19e3c4ab-b756-4aaa-86b8-387921dd6a49
+### verify user
+PUT http://localhost:3900/auth/validate-user/b17752e7-2fe0-41e3-9e53-50d7279fd0ce

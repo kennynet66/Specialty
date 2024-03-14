@@ -39,7 +39,7 @@ activateUser(){
       this.visible1 = true;
       this.message = res.success;
       setTimeout(() => {
-        this.router.navigate(['/details']);
+        this.router.navigate([`/details/${this.userId}`]);
       }, 2000);
     } else if(res.error){
       this.visible = false

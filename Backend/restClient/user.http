@@ -1,0 +1,22 @@
+### set user role
+PUT http://localhost:3900/users/set-role/b287f56f-09aa-4f5e-a5e8-d6d8168dd430
+Content-Type: application/json
+
+{
+    "role": "specialist"
+}
+
+### Update user
+PUT http://localhost:3900/users/update-details/7fc943cd-c897-448b-906c-7a2f51b53fe2
+Content-Type: application/json
+
+{
+    "gender": "male",
+    "DOB": "2/12/2024",
+    "about": "I am me",
+    "country": "Kenya",
+    "city": "Nairobi",
+    "phoneNumber": "0708530896",
+    "bankAcNo": 12356789,
+    "bankAcName": "Kivu branch"
+}

@@ -19,6 +19,7 @@ export class LoginComponent {
   errorMsg!: string;
   successMsg!: string;
   displaySuccess(msg: string, route: string){
+    this.loginForm.reset();
     this.successMsg = msg
     this.successDiv = true;
     setTimeout(() => {
@@ -41,9 +42,19 @@ export class LoginComponent {
     })
   }
 
+  saveToken(token: string){
+    localStorage.setItem('token', token);
+  }
+
   loginUser(){
     if(this.loginForm.valid){
-      this.authservice.loginUser(this.loginForm.value)
+      this.authservice.loginUser(this.loginForm.value).subscribe(res =>{
+        if(res.success){
+          this.displaySuccess(res.success, '/user-dashboard')
+        } else if(res.error){
+          this.displayError(res.error)
+        }
+      })
     } else if (!this.loginForm.valid){
       this.displayError('Please fill in all the fields correctly')
     }

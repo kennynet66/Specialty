@@ -1,3 +1,4 @@
 export interface Industry {
-    industryName: string
+    industryName: string,
+    industryImage: string
 }

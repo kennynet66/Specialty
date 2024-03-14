@@ -6,7 +6,7 @@
     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="5000">
+    <div class="carousel-item active" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
           <h1>Connect to the worlds largest pool of Specialists</h1>
@@ -24,7 +24,7 @@
         <img src="../../../assets/sales.jpg" alt="">
       </div>
     </div>
-    <div class="carousel-item" data-bs-interval="5000">
+    <div class="carousel-item" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
           <h1>Connect to the worlds largest pool of Specialists</h1>
@@ -90,6 +90,19 @@
   </div>
 </section>
 
+<section class="industries">
+  <h1>Talents we offer</h1>
+  <div class="industry">
+    <div class="card" *ngFor="let industry of industryArr; let i = index" style="width: 18rem">
+      <img src="{{industry.industryImage}}" class="card-img-top" alt="{{industry.industryName}}" />
+      <div class="card-body">
+        <h5 class="card-title">{{industry.industryName | titlecase}}</h5>
+      </div>
+    </div>
+
+  </div>
+
+</section>
 
 <app-footer></app-footer>
 

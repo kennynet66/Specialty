@@ -10,7 +10,7 @@ export const createIndustry = (async (req: Request, res: Response) => {
         // Validate the request
         const { error } = industrySchema.validate(req.body);
 
-        if(error){
+        if (error) {
             return res.status(202).json({
                 error: error.details[0].message
             })
@@ -19,10 +19,10 @@ export const createIndustry = (async (req: Request, res: Response) => {
         const pool = await mssql.connect(sqlConfig);
 
         const industryExists = (await pool.request()
-        .input('industryName', mssql.VarChar, industryDetails.industryName)
-        .execute('industryExists')
+            .input('industryName', mssql.VarChar, industryDetails.industryName)
+            .execute('industryExists')
         ).recordset
-        if(industryExists.length >= 1) {
+        if (industryExists.length >= 1) {
             return res.status(202).json({
                 error: "Industry already exists"
             })
@@ -31,6 +31,7 @@ export const createIndustry = (async (req: Request, res: Response) => {
 
         const result = (await pool.request()
             .input("industryId", mssql.VarChar, industryId)
+            .input('industryImage', mssql.VarChar, industryDetails.industryImage)
             .input("industryName", mssql.VarChar, industryDetails.industryName.trim().toLocaleLowerCase())
             .execute('createIndustry')
         ).rowsAffected
@@ -46,13 +47,13 @@ export const createIndustry = (async (req: Request, res: Response) => {
 })
 
 // Get all industries
-export const allIndustries = (async(req: Request, res: Response)=>{
+export const allIndustries = (async (req: Request, res: Response) => {
     try {
         const pool = await mssql.connect(sqlConfig);
-        
+
         const industries = (await pool.request().query('SELECT * FROM Industry')).recordset;
 
-        return res.status(200).json({industries})
+        return res.status(200).json({ industries })
     } catch (error) {
         return res.status(500).json({
             error
@@ -60,27 +61,27 @@ export const allIndustries = (async(req: Request, res: Response)=>{
     }
 })
 
-export const deleteIndustry = (async (req: Request, res: Response) =>{
+export const deleteIndustry = (async (req: Request, res: Response) => {
     try {
         const industryId = req.params.id;
         const pool = await mssql.connect(sqlConfig);
 
         const industryExists = (await pool.request()
-        .input('industryId', mssql.VarChar, industryId)
-        .query('SELECT * FROM Industry WHERE industryId = @industryId')
+            .input('industryId', mssql.VarChar, industryId)
+            .query('SELECT * FROM Industry WHERE industryId = @industryId')
         ).recordset
 
-        if(industryExists.length < 1) {
+        if (industryExists.length < 1) {
             return res.status(202).json({
                 error: "Industry doesn't exists"
             })
         }
 
         const result = (await pool.request()
-        .input("industryId", mssql.VarChar, industryId)
-        .execute('deleteIndustry')).rowsAffected
+            .input("industryId", mssql.VarChar, industryId)
+            .execute('deleteIndustry')).rowsAffected
 
-        return res.status(200).json({success: "Industry deleted successfully"})
+        return res.status(200).json({ success: "Industry deleted successfully" })
     } catch (error) {
         res.status(500).json({
             error

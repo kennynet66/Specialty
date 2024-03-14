@@ -110,6 +110,7 @@ export const loginUser = (async (req: Request, res: Response)=>{
 export const validateUser = (async (req: Request, res: Response) =>{
     try {
         const userId = req.params.id;
+        const detailsId = v4();
 
         const pool = await mssql.connect(sqlConfig);
 
@@ -125,7 +126,8 @@ export const validateUser = (async (req: Request, res: Response) =>{
 
         const result = (await pool.request()
         .input('userId', mssql.VarChar, userId)
-        .query('UPDATE Users SET isVerified = 1 WHERE userId = @userId')
+        .input('detailsId', mssql.VarChar, detailsId)
+        .execute('validateUser')
         ).rowsAffected
 
         if (result[0]){
