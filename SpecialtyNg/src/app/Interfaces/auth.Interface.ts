@@ -22,3 +22,13 @@ export interface loginDetails{
   email: string,
   password: string
 }
+
+export interface userDetailsResponse {
+  info: {
+    userId: string,
+    fullName: string,
+    email: string,
+    isAdmin: boolean,
+    role: string
+  }
+}

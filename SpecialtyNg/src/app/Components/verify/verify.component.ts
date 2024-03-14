@@ -32,7 +32,7 @@ getUserId(){
     this.userId =params['id']
     setTimeout(() => {
       this.activateUser()
-    }, 2000);
+    }, 3000);
   })
 }
 
@@ -45,7 +45,7 @@ activateUser(){
       this.message = res.success;
       setTimeout(() => {
         this.router.navigate([`/details/${this.userId}`]);
-      }, 2000);
+      }, 3000);
     } else if(res.error){
       this.visible = false
       this.error = true;

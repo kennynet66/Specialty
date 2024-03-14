@@ -50,7 +50,15 @@ export class LoginComponent {
     if(this.loginForm.valid){
       this.authservice.loginUser(this.loginForm.value).subscribe(res =>{
         if(res.success){
-          this.displaySuccess(res.success, '/user-dashboard')
+          this.authservice.checkUserDetails(res.token).subscribe(response => {
+            if(response.info.role ==='user'){
+              this.displaySuccess(res.success, '/user-dashboard')
+            } else if(response.info.role === 'specialist'){
+              this.displaySuccess(res.success, '/specialist-dashboard')
+            } else if(response.info.isAdmin) {
+              this.displaySuccess(res.success, '/admin-dashboard')
+            } else if(response.info.role === 'NULL') {}
+          })
         } else if(res.error){
           this.displayError(res.error)
         }
