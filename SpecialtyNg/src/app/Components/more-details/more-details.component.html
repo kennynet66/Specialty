@@ -1,1 +1,44 @@
-<p>more-details works!</p>
+<section class="more-details">
+  <div class="form">
+    <form>
+      <h2>Personal Information</h2>
+      <h2>Gender</h2>
+      <div class="input-div" id="gender-radio">
+        <input type="radio" name="gender" value="male" id="">
+        <label for="">Male</label>
+        <input type="radio" name="gender" value="female" id="">
+        <label for="">Female</label>
+      </div>
+      <div class="input-div" id="DOB">
+        <h4>Date of birth</h4>
+        <input type="date">
+      </div>
+      <div class="input-div" id="about">
+        <h2>About</h2>
+        <textarea placeholder="Tell us something about yourself"></textarea>
+      </div>
+      <div class="input-div" id="address">
+        <h2>Address information</h2>
+        <select name="country" id="country">
+          <option value="">Select your country</option>
+          <option value="kenya">Kenya</option>
+          <option value="Uganda">Uganda</option>
+          <option value="Tanzania">Tanzania</option>
+        </select>
+        <select name="city" id="city">
+          <option value="">Choose your city</option>
+          <option value="Nairobi">Nairobi</option>
+          <option value="Kampala">Kampala</option>
+          <option value="Dodoma">Dodoma</option>
+        </select>
+      </div>
+      <div class="input-div" id="bank-creds">
+        <h2>Bank credentials</h2>
+        <input type="number" min="0" placeholder="Account number">
+        <input type="text" placeholder="Account name">
+      </div>
+      <input type="submit" value="Save Details" class="btn">
+    </form>
+  </div>
+</section>
+<app-footer></app-footer>
