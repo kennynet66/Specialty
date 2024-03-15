@@ -21,3 +21,15 @@ Content-Type: application/json
     "bankAcNo": 12356789,
     "bankAcName": "Kivu branch"
 }
+
+### Get all users
+GET http://localhost:3900/users/all-users
+
+### Get on user
+GET http://localhost:3900/users/one-user/376ba56d-0fc3-41f8-8e03-702dfef73b8f
+
+### Delete a user and their details
+DELETE http://localhost:3900/users/delete-user/376ba56d-0fc3-41f8-8e03-702dfef73b8f
+
+### Get user's details
+GET http://localhost:3900/users/details/382606d6-e405-4323-8352-d3dc4d34d574

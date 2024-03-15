@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import { Login, Token, User } from "../Interfaces/auth.Interface";
 import { registerSchema } from "../Validators/auth.Validator";
 import { sqlConfig } from "../Config/sql.Config";
@@ -69,17 +69,23 @@ export const loginUser = (async (req: Request, res: Response)=>{
 
         const pool = await mssql.connect(sqlConfig);
 
-        const findUser = (await pool.request()
+        const user = (await pool.request()
         .input('email', mssql.VarChar, loginDetails.email)
         .query('SELECT * FROM Users WHERE email = @email')).recordset;
 
-        if(findUser.length < 1) {
+        if(user.length < 1) {
             return res.status(202).json({
                 error: "User not found"
             })
         }
 
-        const isVerified = findUser[0].isVerified
+        const userCredentials = user.map(response =>{
+            const { password, isUser, isVerified, isWelcomed, ...rest } = response;
+
+            return rest;
+        })
+
+        const isVerified = user[0].isVerified
 
         if(!isVerified){
             return res.status(202).json({
@@ -87,7 +93,7 @@ export const loginUser = (async (req: Request, res: Response)=>{
             })
         }
 
-        const isPwd = await bcrypt.compare(loginDetails.password, findUser[0].password);
+        const isPwd = await bcrypt.compare(loginDetails.password, user[0].password);
 
         if(!isPwd){
             return res.status(202).json({
@@ -95,7 +101,7 @@ export const loginUser = (async (req: Request, res: Response)=>{
             })
         }
 
-        const token = createToken(findUser[0])
+        const token = createToken(userCredentials[0])
 
         return res.status(200).json({
             success: "Login successful",
@@ -131,7 +137,13 @@ export const validateUser = (async (req: Request, res: Response) =>{
         .execute('validateUser')
         ).rowsAffected
 
-        const token = createToken(user[0])
+        const userCredentials = user.map(response =>{
+            const { password, isUser, isVerified, isWelcomed, ...rest } = response;
+
+            return rest;
+        })
+
+        const token = createToken(userCredentials[0])
 
         if (result[0]){
             return res.status(200).json({

@@ -16,3 +16,5 @@ CREATE TABLE Users(
 
 SELECT * FROM Users
 SELECT * FROM Details
+
+ALTER TABLE Users ADD profileImg VARCHAR(255)

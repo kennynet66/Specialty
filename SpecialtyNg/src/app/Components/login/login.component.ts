@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -35,7 +35,7 @@ export class LoginComponent {
     }, 2000);
   };
 
-  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService){
+  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService, private renderer: Renderer2, private el: ElementRef){
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
