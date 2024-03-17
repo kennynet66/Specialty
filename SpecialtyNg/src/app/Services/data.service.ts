@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { allIndustriesResponse, updateUserDetails } from '../Interfaces/data.Interface';
+import { allIndustriesResponse, countriesApiResponse, updateUserDetails } from '../Interfaces/data.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,13 @@ export class DataService {
 
   updateUser(userDetails: updateUserDetails, userId: string){
     return this.http.put<{success: string}>(`http://localhost:3900/users/update-details/${userId}`, userDetails)
+  }
+
+  getCountries(){
+    return this.http.get<{countries: countriesApiResponse[]}>("https://api.countrystatecity.in/v1/countries", {
+      headers: {
+        "X-CSCAPI-KEY": "bGM2ZzRGZm4xRzhnTzJkdmxkWEtlY2ROMmh3S1BYWXRsUWxTenVJYg=="
+      }
+    })
   }
 }

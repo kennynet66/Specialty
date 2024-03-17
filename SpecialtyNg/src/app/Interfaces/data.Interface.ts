@@ -25,3 +25,13 @@ export interface updateUserDetails {
   industry: string,
   bankAcName: string
 }
+
+export interface countriesApiResponse {
+  // countries: [
+  //   {
+      id: number,
+      name: string,
+      iso2: string
+  //   }
+  // ]
+}
