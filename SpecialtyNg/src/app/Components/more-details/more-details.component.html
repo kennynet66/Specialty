@@ -31,9 +31,7 @@
         <h2>Address information</h2>
         <select name="country" id="country" formControlName="country">
           <option value="">Select your country</option>
-          <option value="kenya">Kenya</option>
-          <option value="Uganda">Uganda</option>
-          <option value="Tanzania">Tanzania</option>
+          <option  *ngFor="let country of countriesArr | search: filter; let i = index" value="kenya">{{country.name}}- {{country.iso2}}</option>
         </select>
         <div id="error" *ngIf="moreDetailsForm.get('country')?.invalid && moreDetailsForm.get('country')?.touched">Country is required</div>
         <select name="city" id="city" formControlName="city" >

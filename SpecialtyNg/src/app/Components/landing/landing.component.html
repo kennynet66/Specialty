@@ -9,8 +9,8 @@
     <div class="carousel-item active" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
-          <h1>Connect to the worlds largest pool of Specialists</h1>
-          <p>We offer you a secure platform to connect with talented and world class specialists.</p>
+          <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
         </div>
         <img src="../../../assets/stats.png" alt="">
       </div>
@@ -18,8 +18,8 @@
     <div class="carousel-item" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
-          <h1>Connect to the worlds largest pool of Specialists</h1>
-          <p>We offer you a secure platform to connect with talented and world class specialists.</p>
+          <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
         </div>
         <img src="../../../assets/sales.jpg" alt="">
       </div>
@@ -27,8 +27,8 @@
     <div class="carousel-item" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
-          <h1>Connect to the worlds largest pool of Specialists</h1>
-          <p>We offer you a secure platform to connect with talented and world class specialists.</p>
+          <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
         </div>
         <img src="../../../assets/stats.png" alt="">
       </div>
@@ -43,7 +43,7 @@
 </div>
 
 <section class="clients">
-  <h1>Our Clients</h1>
+  <h1 class="text-2xl m-2">Our Clients</h1>
   <p>We have been working with some fortune 500+ clients </p>
   <div class="logos">
     <img src="../../../assets/picsum.png" alt="">
@@ -56,7 +56,7 @@
 </section>
 
 <section class="team">
-  <h1>Meet our talented team</h1>
+  <h1 class="text-2xl m-2">Meet our talented team</h1>
   <p> </p>
   <div class="teams">
     <div class="card" style="width: 18rem">
@@ -91,9 +91,9 @@
 </section>
 
 <section class="industries">
-  <h1>Talents we offer</h1>
+  <h1 class="text-2xl" >Talents we offer</h1>
   <div class="industry">
-    <div class="card" *ngFor="let industry of industryArr; let i = index" style="width: 18rem">
+    <div class="card" id="talent-card" *ngFor="let industry of industryArr; let i = index" style="width: 18rem">
       <img src="{{industry.industryImage}}" class="card-img-top" alt="{{industry.industryName}}" />
       <div class="card-body">
         <h5 class="card-title">{{industry.industryName | titlecase}}</h5>
@@ -105,6 +105,5 @@
 </section>
 
 <app-footer></app-footer>
-<input type="search" name="" id="" [(ngModel)]="filter">
-<div *ngFor="let country of countriesArr | search: filter;; let i = index">{{country.name}}</div>
-
+<!-- <input type="search" name="" id="" [(ngModel)]="filter"> -->
+<!-- <div *ngFor="let country of countriesArr | search: filter; let i = index">{{country.name}}</div> -->

@@ -25,8 +25,8 @@ Content-Type: application/json
 ### Get all users
 GET http://localhost:3900/users/all-users
 
-### Get on user
-GET http://localhost:3900/users/one-user/376ba56d-0fc3-41f8-8e03-702dfef73b8f
+### Get one user
+GET http://localhost:3900/users/one-user/22c7af21-be93-47f9-b190-6c5514b512dc
 
 ### Delete a user and their details
 DELETE http://localhost:3900/users/delete-user/376ba56d-0fc3-41f8-8e03-702dfef73b8f

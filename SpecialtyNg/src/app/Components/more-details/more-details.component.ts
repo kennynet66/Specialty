@@ -1,27 +1,30 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { DataService } from '../../Services/data.service';
-import { Industry } from '../../Interfaces/data.Interface';
+import { Industry, countriesApiResponse } from '../../Interfaces/data.Interface';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-more-details',
   standalone: true,
-  imports: [FooterComponent, CommonModule, ReactiveFormsModule],
+  imports: [FooterComponent, CommonModule, ReactiveFormsModule, SearchPipe],
   templateUrl: './more-details.component.html',
   styleUrl: './more-details.component.css'
 })
 export class MoreDetailsComponent {
   industryArr: Industry[] = [];
-
+  countriesArr: countriesApiResponse[] = [];
+  
   moreDetailsForm!: FormGroup;
   userId!: string;
   errorDiv = false;
   successDiv = false;
   errorMsg!: string;
   successMsg!: string;
+  filter = '';
   displaySuccess(msg: string, route: string) {
     this.moreDetailsForm.reset();
     this.successMsg = msg
@@ -60,6 +63,25 @@ export class MoreDetailsComponent {
       bankAcName: ['', [Validators.required]]
     })
     this.getUserId();
+    this.getAllCountries();
+  }
+
+  async getAllCountries(){
+    const res =  await fetch('https://api.countrystatecity.in/v1/countries', {
+      headers: {
+        "X-CSCAPI-KEY": "bGM2ZzRGZm4xRzhnTzJkdmxkWEtlY2ROMmh3S1BYWXRsUWxTenVJYg=="
+      },
+      method: 'GET'
+    })
+
+    const data = await res.json()
+
+    data.forEach((data: countriesApiResponse) => {
+      this.countriesArr.push(data)
+    })
+
+    console.log("Response", this.countriesArr);
+    
   }
 
   getIndustries() {

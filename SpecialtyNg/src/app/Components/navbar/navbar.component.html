@@ -1,10 +1,19 @@
 <section class="navbar">
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
+  <nav class="navbar navbar-light bg-slate-500 m-0">
+    <div class="container-fluid d-flex">
       <a class="navbar-brand" routerLink="/" style="color: #29AB87;">Specialty</a>
+      <div class="d-flex" *ngIf="isLogged">
+        <input type="text" name="search" class="p-2 bg-white border-md focus:outline-none" placeholder="Type to search...">
+        <!-- <input type="submit" value="Search" class="bg-white p-2"> -->
+        <button class="bg-white p-2"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      
       <div class="d-flex">
-        <div class="login m-2" routerLink="/login" style="cursor: pointer;">Login</div>
-        <div class="signup m-2" routerLink="/register" style="cursor: pointer;">Sign up</div>
+        <!-- <a routerLink="/contact" class="m-2 text-white cursor-pointer"  style="color: #29AB87;">Contact</a> -->
+        <div class="contact m-2" *ngIf="!isLogged" routerLink="/contact" style="cursor: pointer;">Contact</div>
+        <div class="login m-2" *ngIf="!isLogged" routerLink="/login" style="cursor: pointer;">Login</div>
+        <div class="signup m-2" *ngIf="!isLogged" routerLink="/register" style="cursor: pointer;">Sign up</div>
+      <div class="logout m-2 bg-red-600 text-white btn hover:bg-red-700" *ngIf="isLogged" style="cursor: pointer;" (click)="logout()" >Logout</div>
         </div>
     </div>
   </nav>

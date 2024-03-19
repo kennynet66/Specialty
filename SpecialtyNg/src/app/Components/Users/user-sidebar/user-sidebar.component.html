@@ -1,1 +1,7 @@
-<p>user-sidebar works!</p>
+<div class="sidebar">
+    <a><i class="fa-solid fa-house"></i> Home</a>
+    <a><i class="fa-solid fa-calendar"></i> Scheduled meetings</a>
+    <a *ngIf="isUser"><i class="fa-solid fa-users"></i> Hired specialists</a>
+    <a routerLink="/user-dashboard/history" ><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+    <a (click)="navigateToProfile()"><i class="fa-solid fa-user"></i> Profile</a>
+</div>

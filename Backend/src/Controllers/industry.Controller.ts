@@ -61,6 +61,7 @@ export const allIndustries = (async (req: Request, res: Response) => {
     }
 })
 
+// Delete an industry
 export const deleteIndustry = (async (req: Request, res: Response) => {
     try {
         const industryId = req.params.id;
@@ -86,5 +87,14 @@ export const deleteIndustry = (async (req: Request, res: Response) => {
         res.status(500).json({
             error
         })
+    }
+})
+
+// Get users in an industry
+const userIdustry = (async (req: Request, res: Response) =>{
+    try {
+        
+    } catch (error) {
+        
     }
 })

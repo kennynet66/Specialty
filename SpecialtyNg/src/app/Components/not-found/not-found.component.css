@@ -1,0 +1,17 @@
+.not-found {
+    background-image: url('../../../assets/404.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    /* object-fit: cover; */
+    background-size: cover;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn {
+    background-color: #29AB87;
+    color: #ffffff;
+    margin: 2%;
+}

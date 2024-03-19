@@ -8,3 +8,4 @@ BEGIN
     INSERT INTO Details(detailsId, userId, dateJoined)
     VALUES(@detailsId, @userId, GETDATE());
 END
+

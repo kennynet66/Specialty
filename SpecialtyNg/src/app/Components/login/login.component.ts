@@ -43,19 +43,24 @@ export class LoginComponent {
   }
 
   saveToken(token: string){
-    localStorage.setItem('token', token);
+    localStorage.setItem('specialty_token', token);
   }
 
   loginUser(){
     if(this.loginForm.valid){
       this.authservice.loginUser(this.loginForm.value).subscribe(res =>{
         if(res.success){
+          
           this.authservice.checkUserDetails(res.token).subscribe(response => {
+            console.log(response);
             if(response.info.role ==='user'){
-              this.displaySuccess(res.success, '/user-dashboard')
+              this.displaySuccess(res.success, '/user-dashboard/home')
+              this.saveToken(res.token);
             } else if(response.info.role === 'specialist'){
+              this.saveToken(res.token);
               this.displaySuccess(res.success, '/specialist-dashboard')
             } else if(response.info.isAdmin) {
+              this.saveToken(res.token);
               this.displaySuccess(res.success, '/admin-dashboard')
             } else if(response.info.role === 'NULL') {}
           })

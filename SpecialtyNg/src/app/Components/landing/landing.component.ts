@@ -4,48 +4,23 @@ import { FooterComponent } from '../footer/footer.component';
 import { DataService } from '../../Services/data.service';
 import { Industry, countriesApiResponse } from '../../Interfaces/data.Interface';
 import { CommonModule } from '@angular/common';
-import { SearchPipe } from '../../pipes/search.pipe';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [ NavbarComponent, FooterComponent,CommonModule, SearchPipe, FormsModule ],
+  imports: [ NavbarComponent, FooterComponent,CommonModule, FormsModule ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.css'
 })
 export class LandingComponent {
   industryArr: Industry[] = [];
-  countriesArr: countriesApiResponse[] = [];
-
-  filter = '';
   constructor(private dataservice: DataService){
     this.getAllIndustries();
-    this.getAllCountries();
     
   }
 
-  async getAllCountries(){
-    // this.dataservice.getCountries().subscribe(res =>{
-    //   console.log(res.countries);
-      
-    // })
-    const res =  await fetch('https://api.countrystatecity.in/v1/countries', {
-      headers: {
-        "X-CSCAPI-KEY": "bGM2ZzRGZm4xRzhnTzJkdmxkWEtlY2ROMmh3S1BYWXRsUWxTenVJYg=="
-      },
-      method: 'GET'
-    })
 
-    const data = await res.json()
-
-    data.forEach((data: countriesApiResponse) => {
-      this.countriesArr.push(data)
-    })
-
-    console.log("Response", this.countriesArr);
-    
-  }
   getAllIndustries(){
     this.dataservice.getAllIndustries().subscribe(res =>{
       if(res.industries){

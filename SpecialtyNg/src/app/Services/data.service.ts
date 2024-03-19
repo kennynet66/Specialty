@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { allIndustriesResponse, countriesApiResponse, updateUserDetails } from '../Interfaces/data.Interface';
+import { oneUserResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,5 +28,9 @@ export class DataService {
         "X-CSCAPI-KEY": "bGM2ZzRGZm4xRzhnTzJkdmxkWEtlY2ROMmh3S1BYWXRsUWxTenVJYg=="
       }
     })
+  }
+
+  getUser(userId: string){
+    return this.http.get<oneUserResponse>(`http://localhost:3900/users/one-user/${userId}`)
   }
 }

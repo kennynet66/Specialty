@@ -94,3 +94,6 @@
   gap: 20px;
   justify-content: center;
 }
+#talent-card {
+  background-color: #ffffff !important;
+}

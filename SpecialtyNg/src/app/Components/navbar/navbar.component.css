@@ -4,20 +4,23 @@
   gap: 20px;
 }
 
-.login, .signup{
+.login, .signup, .contact{
   background-color: #29AB87;
   color: #ffffff;
   padding: 10px;
   border-radius: 5px;
 }
 
-.login:hover, .signup:hover {
+.login:hover, .signup:hover, .contact:hover {
   background-color: #00755e;
 }
 
-nav{
-  flex-wrap: wrap;
-  background-color: #e6e6e6;
+.logout {
+  /* background-color: red; */
+}
+
+.navbar{
+  background-color: #dbdbdb;
   width: 100%;
   display: flex;
   justify-content: space-between;

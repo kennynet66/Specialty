@@ -27,11 +27,7 @@ export interface updateUserDetails {
 }
 
 export interface countriesApiResponse {
-  // countries: [
-  //   {
       id: number,
       name: string,
       iso2: string
-  //   }
-  // ]
 }

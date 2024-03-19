@@ -6,7 +6,7 @@
   </div>
   <div class="form">
     <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
-      <h2 >Join us today</h2>
+      <h2 class="text-3xl" >Join us today</h2>
       <p>Already have an account? <a routerLink="/login">Login!</a></p>
       <div class="input-div m-2">
         <input type="text" placeholder="Full Name" class="form-control" formControlName = "fullName" >

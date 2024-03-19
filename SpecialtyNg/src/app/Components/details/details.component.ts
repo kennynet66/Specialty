@@ -47,8 +47,10 @@ export class DetailsComponent {
   selectRole(){
     if(this.roleForm.valid){
       this.dataservice.setRole(this.userId, this.roleForm.value).subscribe(res =>{
-        if(res.success){
+        if(res.success === 'specialist'){
           this.router.navigate([`more-details/${this.userId}`])
+        } else if(res.success === 'user'){
+          this.router.navigate(['/user-dashboard/home'])
         }
       })
     } else{
