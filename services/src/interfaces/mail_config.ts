@@ -1,5 +1,5 @@
 export interface mailConfig{
-    service: string;
+    // service: string;
     host: string;
     port: number;
     requireTLS: boolean,

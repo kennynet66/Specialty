@@ -19,6 +19,6 @@
         <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">Email:</p> {{user.email | titlecase}}</h3>
         <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">Phone number:</p> {{user.phoneNumber | titlecase }}</h3>
         <h3><p class="font-bold" style="font-weight: 600; margin: 2% 0;">Gender:</p> {{user.gender | titlecase}}</h3>
-        <button class="btn bg-teal-600 text-white m-2 hover:bg-teal-700">Update profile</button>
+        <button class="btn bg-teal-600 text-white m-2 hover:bg-teal-700" (click)="updateProfile()" >Update profile</button>
     </div>
 </section>

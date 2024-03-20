@@ -12,13 +12,13 @@ function createTransporter(config: mailConfig){
 }
 
 let configurations: mailConfig = ({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
+    // service: 'gmail',
+    host: 'smtp.ethereal.email',
     port: 587,
     requireTLS:true,
     auth: {
-        user: process.env.USER as string,
-        pass: process.env.PASS as string
+        user: process.env.E_USER as string,
+        pass: process.env.E_PASS as string
     }
 })
 

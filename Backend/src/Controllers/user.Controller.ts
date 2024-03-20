@@ -153,3 +153,20 @@ export const userDetails = (async (req: Request, res: Response) => {
         })
     }
 })
+
+export const getAllSpecialists = (async(req: Request, res: Response) =>{
+    try {
+        const pool = await mssql.connect(sqlConfig);
+
+        const specialists = (await pool.request()
+        .query("SELECT * FROM Users WHERE role = 'specialist'")).recordset;
+
+        return res.status(200).json({
+            specialists
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
+})

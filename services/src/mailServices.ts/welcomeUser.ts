@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import ejs from 'ejs'
 import { sqlConfig } from '../config/sqlConfig'
 import { sendMail } from '../helpers/email.helpers'
+dotenv.config();
 
 export const welcomeuser = async () => {
     const pool = await mssql.connect(sqlConfig);
@@ -14,7 +15,7 @@ export const welcomeuser = async () => {
     for (let user of users) {
         ejs.renderFile('templates/welcomeUser.ejs', { CustomerName: user.fullName, customerId:user.userId }, async (error, data) => {
             let mailOptions = {
-                from: "kennynet66@gmail.com",
+                from: process.env.E_USER,
                 to: user.email,
                 subject: "Welcome to Specialty",
                 html: data

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteUser, getAllUsers, getOneUser, setRole, updateDetails, userDetails } from "../Controllers/user.Controller";
+import { deleteUser, getAllSpecialists, getAllUsers, getOneUser, setRole, updateDetails, userDetails } from "../Controllers/user.Controller";
 
 const userRoutes = Router();
 
@@ -9,5 +9,6 @@ userRoutes.put('/update-details/:id', updateDetails);
 userRoutes.get('/one-user/:id', getOneUser);
 userRoutes.delete('/delete-user/:id', deleteUser);
 userRoutes.get('/details/:id', userDetails);
+userRoutes.get('/all-specialists', getAllSpecialists);
 
 export default userRoutes;
