@@ -13,6 +13,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { HomeComponent } from './Components/Users/home/home.component';
 import { HistoryComponent } from './Components/history/history.component';
+import { SingleSpecialistComponent } from './Components/Users/single-specialist/single-specialist.component';
 
 export const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -27,6 +28,7 @@ export const routes: Routes = [
     {path: 'history', component: HistoryComponent},
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'specialist/:id', component: SingleSpecialistComponent},
   ]},
   {path: 'more-details/:id', component: MoreDetailsComponent},
   {path: 'specialist-dashboard', component: SpecialistDashboardComponent, children: [

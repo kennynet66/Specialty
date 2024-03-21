@@ -3,8 +3,8 @@
   <div *ngIf="errorDiv" class="error-msg">{{errorMsg}}</div>
   <div class="form">
     <form [formGroup]="moreDetailsForm" (ngSubmit)="updatedetails()">
-      <h2>Personal Information</h2>
-      <h2>Gender</h2>
+      <h2 class="text-2xl m-2">Personal Information</h2>
+      <h2 class="text-2xl m-2">Gender</h2>
       <div class="input-div" id="gender-radio">
         <input type="radio" name="gender" value="male" id="" formControlName="gender">
         <label for="">Male</label>
@@ -18,7 +18,8 @@
         <div *ngIf="moreDetailsForm.get('DOB')?.invalid && moreDetailsForm.get('DOB')?.touched" id="error">Date of birth is required</div>
       </div>
       <div class="input-div" id="about">
-        <h2>About</h2>
+        <h2 class="text-2xl m-2">About</h2>
+        <input type="number" name="" formControlName="rate" min="1" placeholder="Payment rate on an hourly basis" id="">
         <textarea placeholder="Tell us something about yourself" formControlName="about"></textarea>
         <div id="error" *ngIf="moreDetailsForm.get('about')?.invalid && moreDetailsForm.get('about')?.touched">About you is required</div>
         <select name="industry" id="industry" formControlName="industry">
@@ -28,7 +29,7 @@
         <div id="error" *ngIf="moreDetailsForm.get('industry')?.invalid && moreDetailsForm.get('industry')?.touched">Industry is required</div>
       </div>
       <div class="input-div" id="address">
-        <h2>Address information</h2>
+        <h2 class="text-2xl m-2">Address information</h2>
         <select name="country" id="country" formControlName="country">
           <option value="">Select your country</option>
           <option  *ngFor="let country of countriesArr | search: filter; let i = index" value="kenya">{{country.name}}- {{country.iso2}}</option>
@@ -45,7 +46,7 @@
         <div id="error" *ngIf="moreDetailsForm.get('phoneNumber')?.invalid && moreDetailsForm.get('phoneNumber')?.touched">Phone number is required</div>
       </div>
       <div class="input-div" id="bank-creds">
-        <h2>Bank credentials</h2>
+        <h2 class="text-2xl m-2">Bank credentials</h2>
         <input type="number" min="0" placeholder="Account number" formControlName="bankAcNo">
         <div id="error" *ngIf="moreDetailsForm.get('bankAcNo')?.invalid && moreDetailsForm.get('bankAcNo')?.touched">Bank account number is required</div>
         <input type="text" placeholder="Account name" formControlName="bankAcName">
