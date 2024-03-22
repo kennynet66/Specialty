@@ -60,7 +60,8 @@ export class MoreDetailsComponent {
       city: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       bankAcNo: ['', [Validators.required, Validators.min(0)]],
-      bankAcName: ['', [Validators.required]]
+      bankAcName: ['', [Validators.required]],
+      rate: ['', [Validators.required]]
     })
     this.getUserId();
     this.getAllCountries();

@@ -33,8 +33,6 @@ export class NavbarComponent implements OnInit {
 
   checkUserState(){
     this.authservice.checkUserDetails(this.token).subscribe(res =>{
-      console.log(res);
-      
       if (res.info){
         this.isLogged = true
       }

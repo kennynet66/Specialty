@@ -9,5 +9,6 @@ export const updateSchema = Joi.object({
     city: Joi.string().required(),
     phoneNumber: Joi.string().required(),
     bankAcNo: Joi.number().required(),
-    bankAcName: Joi.string().required()
+    bankAcName: Joi.string().required(),
+    rate: Joi.number().required()
 });

@@ -27,7 +27,33 @@ export interface updateUserDetails {
 }
 
 export interface countriesApiResponse {
-      id: number,
-      name: string,
-      iso2: string
+  id: number,
+  name: string,
+  iso2: string
+}
+
+export interface specialistResponse {
+  specialists: [
+    {
+      userId: string,
+      fullName: string,
+      profileImg: string
+      email: string,
+      gender: string,
+      about: string,
+      industryName: string,
+      rate: number
+    }
+  ]
+}
+
+export interface Specialist {
+  userId: string,
+  profileImg: string
+  email: string,
+  gender: string,
+  about: string,
+  fullName: string,
+  industryName: string
+  rate: number
 }

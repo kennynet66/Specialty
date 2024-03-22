@@ -13,6 +13,9 @@ import { ProfileComponent } from './Components/profile/profile.component';
 import { ContactComponent } from './Components/contact/contact.component';
 import { HomeComponent } from './Components/Users/home/home.component';
 import { HistoryComponent } from './Components/history/history.component';
+import { SingleSpecialistComponent } from './Components/Users/single-specialist/single-specialist.component';
+import { UserMessageComponent } from './Components/Users/user-message/user-message.component';
+import { SpecialistMessageComponent } from './Components/Specialist/specialist-message/specialist-message.component';
 
 export const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -24,12 +27,15 @@ export const routes: Routes = [
   {path: 'details/:id', component: DetailsComponent},
   {path: 'user-dashboard', component: UserDashboardComponent,
   children: [
+    {path: 'messages/:id', component: UserMessageComponent},
     {path: 'history', component: HistoryComponent},
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'specialist/:id', component: SingleSpecialistComponent},
   ]},
   {path: 'more-details/:id', component: MoreDetailsComponent},
   {path: 'specialist-dashboard', component: SpecialistDashboardComponent, children: [
+    {path: 'messages', component: SpecialistMessageComponent},
     {path: 'profile/:id', component: ProfileComponent}
   ]},
   {path: '**', component: NotFoundComponent}

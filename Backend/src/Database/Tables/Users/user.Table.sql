@@ -12,7 +12,12 @@ CREATE TABLE Users(
     -- rate INT DEFAULT 0 NOT NULL,
 
 -- DROP TABLE Users
--- ALTER TABLE Users ADD isVerified
+-- ALTER TABLE Users ADD rate INT DEFAULT 0 NOT NULL
+
+ALTER TABLE Users
+DROP COLUMN rate;
+ALTER TABLE Users
+DROP CONSTRAINT DF__Users__rate__29221CFB
 
 SELECT * FROM Users
 SELECT * FROM Details
@@ -20,4 +25,5 @@ SELECT * FROM Details
 DELETE FROM Details
 DELETE FROM Users
 
-ALTER TABLE Users ADD profileImg VARCHAR(255) DEFAULT
+UPDATE Users SET profileImg = 'https://picsum.photos/721/400';
+ALTER TABLE Details ADD rate INT DEFAULT 0 NOT NULL
