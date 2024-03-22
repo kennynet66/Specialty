@@ -25,8 +25,6 @@ export class UserSidebarComponent {
 
   checkUserState(){
     this.authservice.checkUserDetails(this.token).subscribe(res =>{
-      console.log(res);
-      
       if (res.info.role === 'specialist'){
         this.isUser = false
       } else if(res.info.role==='user'){

@@ -19,8 +19,6 @@ export class HomeComponent {
 
   getAllSpecialists(){
     this.dataservice.getAllSpecialists().subscribe(res => {
-      console.log(res);
-      
       res.specialists.forEach(specialist => {
         this.specialistsArr.push(specialist)
       })

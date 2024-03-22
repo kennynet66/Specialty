@@ -14,6 +14,7 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { HomeComponent } from './Components/Users/home/home.component';
 import { HistoryComponent } from './Components/history/history.component';
 import { SingleSpecialistComponent } from './Components/Users/single-specialist/single-specialist.component';
+import { MessagesComponent } from './Components/messages/messages.component';
 
 export const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -25,6 +26,7 @@ export const routes: Routes = [
   {path: 'details/:id', component: DetailsComponent},
   {path: 'user-dashboard', component: UserDashboardComponent,
   children: [
+    {path: 'messages/:id', component: MessagesComponent},
     {path: 'history', component: HistoryComponent},
     {path: 'profile/:id', component: ProfileComponent},
     {path: 'home', component: HomeComponent},

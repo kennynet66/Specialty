@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../../Services/data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Specialist } from '../../../Interfaces/data.Interface';
 import { CommonModule } from '@angular/common';
-import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://localhost:3900', options: {} };
 
 @Component({
   selector: 'app-single-specialist',
   standalone: true,
-  imports: [ CommonModule, SocketIoModule ],
+  imports: [ CommonModule, RouterLink ],
   templateUrl: './single-specialist.component.html',
   styleUrl: './single-specialist.component.css'
 })
@@ -29,8 +27,6 @@ export class SingleSpecialistComponent {
 
   getSpecialistDetails(){
     this.dataservice.getOneSpecialist(this.specialistId).subscribe(res =>{
-      console.log(res);
-      
       res.specialists.forEach(specialist => {
         this.specialist.push(specialist)
       })
