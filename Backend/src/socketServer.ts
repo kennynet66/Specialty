@@ -16,18 +16,27 @@ const io = new Server(httpServer, {
 const connectedUsers: Map<string, Socket> = new Map();
 
 io.on('connection', (socket: Socket) => {
-    const userId: string = socket.handshake.headers.userid as string;
-    connectedUsers.set(userId, socket); // Store the socket associated with the user id
+    // Get the Id of the connected user who is a potential message sender
+    const senderId: string = socket.handshake.headers.senderid as string;
+    // Keep track of the connected users
+    connectedUsers.set(senderId, socket);
     
-    console.log('A client connected', socket.id, 'with userId:', userId);
+    console.log('A client connected', socket.id, 'with userId:', senderId);
 
     socket.on('message', (message: { message: string, recipientId: string }) => {
-        console.log('Received message:', message.message, "To be sent to", message.recipientId);
+        // console.log('Received message:', message.message, "To be sent to", message.recipientId);
 
+        // Get the Id of the user
         const recipientSocket = connectedUsers.get(message.recipientId);
+
+        // Check if the recipient is connected and send the message to them if they are connected
         if (recipientSocket) {
-            recipientSocket.emit('message', message.message); // Emit message to the recipient socket
-            console.log("emitting to recipient", message.recipientId);
+            recipientSocket.emit('message',
+            {
+                message: message.message,
+                sender: senderId
+            });
+            // console.log("emitting to recipient", message.recipientId);
         } else {
             console.log("Recipient with userId", message.recipientId, "is not connected.");
         }

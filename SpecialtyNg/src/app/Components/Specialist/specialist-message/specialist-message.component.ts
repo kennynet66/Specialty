@@ -1,33 +1,28 @@
 import { Component } from '@angular/core';
-import { ChatService } from '../../Services/chat.service';
-import { AuthService } from '../../Services/auth.service';
+import { ChatService } from '../../../Services/chat.service';
+import { AuthService } from '../../../Services/auth.service';
+import { Message } from '../../messages/messages.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { map } from 'rxjs';
-
-export interface Message {
-  message: string,
-  sender: string
-}
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-specialist-message',
   standalone: true,
   imports: [ CommonModule, FormsModule ],
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.css'
+  templateUrl: './specialist-message.component.html',
+  styleUrl: './specialist-message.component.css'
 })
-export class MessagesComponent {
+export class SpecialistMessageComponent {
 
   message:string = '';
   messages:Message[] = []
-  userId!: string;
+  senderId!: string;
 
   getUserId(){
     const token: string = localStorage.getItem("specialty_token") as string;
 
     this.authservice.checkUserDetails(token).subscribe(res => {
-      this.userId = res.info.userId
+      this.senderId = res.info.userId
       this.setHeaders();
     })
   }
@@ -39,10 +34,10 @@ export class MessagesComponent {
   }
 
   setHeaders(){
-    console.log("Your id", this.userId);
+    console.log("Your id", this.senderId);
     
     this.socket.ioSocket.io.opts.extraHeaders = {
-      userId: this.userId
+      senderId: this.senderId
     };
     this.socket.connect()
 }
@@ -51,7 +46,7 @@ export class MessagesComponent {
     this.socket.emit('message', {message: this.message, recipientId: this.recipientId});
     let messageObj = {
       message: this.message,
-      sender: this.userId
+      sender: this.senderId
     }
 
     this.messages.push(messageObj)

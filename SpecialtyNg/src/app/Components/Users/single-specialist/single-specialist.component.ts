@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { DataService } from '../../../Services/data.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Specialist } from '../../../Interfaces/data.Interface';
@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './single-specialist.component.css'
 })
 export class SingleSpecialistComponent {
+
   specialistId!: string;
   specialist: Specialist[] = []
   getId(){
