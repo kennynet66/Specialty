@@ -8,7 +8,8 @@ CREATE OR ALTER PROCEDURE updateDetails(
     @industry VARCHAR(255),
     @phoneNumber VARCHAR(255),
     @bankAcNo BIGINT,
-    @bankAcName VARCHAR(255)
+    @bankAcName VARCHAR(255),
+    @rate INT
 )
 AS
 BEGIN
@@ -22,7 +23,8 @@ BEGIN
     phoneNumber = @phoneNumber,
     bankAcNo = @bankAcNo,
     bankAcName = @bankAcName,
-    industry = @industry
+    industry = @industry,
+    rate = @rate
     WHERE userId = @userId
 END
 

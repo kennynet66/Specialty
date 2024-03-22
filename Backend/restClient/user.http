@@ -19,6 +19,7 @@ Content-Type: application/json
     "industry": "0c3a4c91-d3c2-4c58-9018-0919bca5be78",
     "phoneNumber": "0708530896",
     "bankAcNo": 12356789,
+    "rate": 10,
     "bankAcName": "Kivu branch"
 }
 
@@ -37,3 +38,6 @@ GET http://localhost:3900/users/details/382606d6-e405-4323-8352-d3dc4d34d574
 
 ### Get all specialists
 GET http://localhost:3900/users/all-specialists
+
+### Get one specialist
+GET http://localhost:3900/users/specialist/c58b30b2-07f3-44e7-84a0-714e445ef954

@@ -45,7 +45,7 @@ export const updateDetails = (async (req: Request, res: Response) => {
 
         if (error) {
             return res.status(202).json({
-                error: error
+                error: error.details[0].message
             })
         }
 
@@ -58,6 +58,7 @@ export const updateDetails = (async (req: Request, res: Response) => {
             .input('about', mssql.VarChar, userDetails.about.trim().toLocaleLowerCase())
             .input('country', mssql.VarChar, userDetails.country.trim().toLocaleLowerCase())
             .input('city', mssql.VarChar, userDetails.city.trim().toLocaleLowerCase())
+            .input('rate', mssql.Int, userDetails.rate)
             .input('industry', mssql.VarChar, userDetails.industry)
             .input('phoneNumber', mssql.VarChar, userDetails.phoneNumber.trim())
             .input('bankAcNo', mssql.BigInt, userDetails.bankAcNo)
@@ -159,7 +160,27 @@ export const getAllSpecialists = (async(req: Request, res: Response) =>{
         const pool = await mssql.connect(sqlConfig);
 
         const specialists = (await pool.request()
-        .query("SELECT * FROM Users WHERE role = 'specialist'")).recordset;
+        .execute("getAllSpecialists")).recordset;
+
+        return res.status(200).json({
+            specialists
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
+})
+
+export const getOneSpecialist = (async(req: Request, res: Response) =>{
+    try {
+        const userId: string = req.params.id;
+
+        const pool = await mssql.connect(sqlConfig);
+
+        const specialists = (await pool.request()
+        .input('userId', userId)
+        .execute('getOneSpecialist')).recordset
 
         return res.status(200).json({
             specialists

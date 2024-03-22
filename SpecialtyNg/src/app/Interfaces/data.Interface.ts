@@ -32,7 +32,7 @@ export interface countriesApiResponse {
   iso2: string
 }
 
-export interface allSpecialistsResponse {
+export interface specialistResponse {
   specialists: [
     {
       userId: string,

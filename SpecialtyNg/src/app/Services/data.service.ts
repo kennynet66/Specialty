@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { allIndustriesResponse, allSpecialistsResponse, countriesApiResponse, updateUserDetails } from '../Interfaces/data.Interface';
+import { allIndustriesResponse, countriesApiResponse, specialistResponse, updateUserDetails } from '../Interfaces/data.Interface';
 import { oneUserResponse } from '../Interfaces/user.Interface';
 
 @Injectable({
@@ -35,6 +35,10 @@ export class DataService {
   }
 
   getAllSpecialists(){
-    return this.http.get<allSpecialistsResponse>('http://localhost:3900/users/all-specialists')
+    return this.http.get<specialistResponse>('http://localhost:3900/users/all-specialists')
+  }
+
+  getOneSpecialist(specialistId: string){
+    return this.http.get<specialistResponse>(`http://localhost:3900/users/specialist/${specialistId}`)
   }
 }
