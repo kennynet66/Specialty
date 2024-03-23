@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-row items-center">
+        <form class="flex flex-row items-center" [formGroup]="messageForm" (ngSubmit)="sendMessage()">
             <div class="flex flex-row items-center w-full border rounded-3xl h-12 px-2">
                 <button class="flex items-center justify-center h-10 w-10 text-gray-400 ml-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -63,7 +63,8 @@
                     </svg>
                 </button>
                 <div class="w-full">
-                    <input type="text"  [(ngModel)]="message"
+                    <input type="text"
+                    formControlName="message"
                         class="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
                         placeholder="Type your message....">
                 </div>
@@ -87,7 +88,7 @@
                 </div>
             </div>
             <div class="ml-6">
-                <button (click)="sendMessage()"
+                <button type="submit"
                     class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-green-800 text-white">
                     <svg class="w-5 h-5 transform rotate-90 -mr-px" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -96,6 +97,6 @@
                     </svg>
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </div>

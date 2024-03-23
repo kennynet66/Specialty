@@ -26,7 +26,7 @@ export class SpecialistMessageComponent {
       this.setHeaders();
     })
   }
-  recipientId: string = "c58b30b2-07f3-44e7-84a0-714e445ef954"
+  recipientId!: string
 
   constructor(private socket: ChatService, private authservice: AuthService){
     this.getUserId()
