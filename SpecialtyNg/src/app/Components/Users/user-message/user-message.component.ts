@@ -58,7 +58,6 @@ export class UserMessageComponent {
   sendMessage() {
     if(this.messageForm.valid){
     this.socket.emit('message', { message: this.messageForm.value.message, recipientId: this.recipientId });
-    this.messageForm.reset()
     let messageObj = {
       message: this.messageForm.value.message,
       sender: this.senderId
@@ -66,7 +65,8 @@ export class UserMessageComponent {
 
     this.messages.push(messageObj)
     console.log(this.messages);
-    }
+    this.messageForm.reset()
+  }
 
 
   }

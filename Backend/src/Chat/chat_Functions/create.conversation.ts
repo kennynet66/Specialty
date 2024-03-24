@@ -11,14 +11,14 @@ export async function createConversation(senderId: string, receiverId: string, m
         const exists = await execute(procedure, {senderId, receiverId})
         if(exists.recordset.length >= 1){
             const chatId: string = exists.recordset[0].chatId as string
-            const procedure = 'createChat';
+            procedure = 'createMessage';
             const messageId = v4();
-            const result = await  execute(procedure, {chatId, senderId, receiverId, message, messageId})
+            const result = await  execute(procedure, {chatId, message, messageId})
         }
         else{
             const chatId = v4();
             const messageId = v4();
-            const procedure = 'createChat'
+            procedure = 'createChat'
             const result = execute(procedure, {chatId, senderId, receiverId, message, messageId})
         }
 }

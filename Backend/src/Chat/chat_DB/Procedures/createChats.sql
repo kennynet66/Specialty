@@ -7,8 +7,8 @@ CREATE OR ALTER PROCEDURE createChat(
 )
 AS
 BEGIN
-    INSERT INTO Chats(chatId, senderId, receiverId, sentAt)
+    INSERT INTO Chats(chatId, senderId, receiverId, startedAt)
     VALUES(@chatId, @senderId, @receiverId, GETDATE());
-    INSERT INTO Messages(messageId, chatId, message)
-    VALUES(@messageId, @chatId, @message)
+    INSERT INTO Messages(messageId, chatId, message, sentAt)
+	VALUES(@messageId, @chatId, @message, GETDATE());
 END;
