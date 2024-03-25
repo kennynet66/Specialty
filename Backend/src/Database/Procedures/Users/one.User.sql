@@ -3,7 +3,7 @@ CREATE OR ALTER PROCEDURE getOneUser(
 )
 AS
 BEGIN
-    SELECT profileImg, fullName, d.* FROM Users u
+    SELECT profileImg, email, fullName, d.* FROM Users u
     INNER JOIN Details d 
     ON d.userId = u.userId
     WHERE u.userId = @userId;

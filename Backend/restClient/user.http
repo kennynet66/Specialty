@@ -27,13 +27,13 @@ Content-Type: application/json
 GET http://localhost:3900/users/all-users
 
 ### Get one user
-GET http://localhost:3900/users/one-user/22c7af21-be93-47f9-b190-6c5514b512dc
+GET http://localhost:3900/users/one-user/0ae9d7fa-c630-4c90-8175-d471816bcff6
 
 ### Delete a user and their details
-DELETE http://localhost:3900/users/delete-user/376ba56d-0fc3-41f8-8e03-702dfef73b8f
+DELETE http://localhost:3900/users/delete-user/22c7af21-be93-47f9-b190-6c5514b512dc
 
 ### Get user's details
-GET http://localhost:3900/users/details/382606d6-e405-4323-8352-d3dc4d34d574
+GET http://localhost:3900/users/details/22c7af21-be93-47f9-b190-6c5514b512dc
 
 
 ### Get all specialists

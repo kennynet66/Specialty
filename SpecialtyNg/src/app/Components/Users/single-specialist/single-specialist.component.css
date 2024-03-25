@@ -28,6 +28,7 @@
   .scroll{
     padding: 10px;
     border: 2px solid #29ab87;
+    border-radius: 5px;
     cursor: pointer;
     width: 40%;
   }

@@ -3,6 +3,7 @@ import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.Config";
 import { UpdateUser } from "../Interfaces/user.Interface";
 import { updateSchema } from "../Validators/user.Validator";
+import { execute, query } from "../dbHelper/dbHelper";
 
 export const setRole = (async (req: Request, res: Response) => {
     try {
@@ -21,7 +22,7 @@ export const setRole = (async (req: Request, res: Response) => {
             return res.status(200).json({
                 success: "user"
             })
-        } else if(role === 'specialist'){
+        } else if (role === 'specialist') {
             return res.status(200).json({
                 success: "specialist"
             })
@@ -48,23 +49,21 @@ export const updateDetails = (async (req: Request, res: Response) => {
                 error: error.details[0].message
             })
         }
+        let procedure = 'updateDetails';
 
-        const pool = await mssql.connect(sqlConfig);
-
-        const result = (await pool.request()
-            .input('userId', mssql.VarChar, userId)
-            .input('gender', mssql.VarChar, userDetails.gender.trim().toLocaleLowerCase())
-            .input('DOB', mssql.VarChar, userDetails.DOB.trim().toLocaleLowerCase())
-            .input('about', mssql.VarChar, userDetails.about.trim().toLocaleLowerCase())
-            .input('country', mssql.VarChar, userDetails.country.trim())
-            .input('city', mssql.VarChar, userDetails.city.trim())
-            .input('rate', mssql.Int, userDetails.rate)
-            .input('industry', mssql.VarChar, userDetails.industry)
-            .input('phoneNumber', mssql.VarChar, userDetails.phoneNumber.trim())
-            .input('bankAcNo', mssql.BigInt, userDetails.bankAcNo)
-            .input('bankAcName', mssql.VarChar, userDetails.bankAcName.trim().toLocaleLowerCase())
-            .execute('updateDetails')
-        ).rowsAffected
+        const result = (await execute(procedure, {
+            userId: userId,
+            gender: userDetails.gender,
+            DOB: userDetails.DOB,
+            about: userDetails.about,
+            country: userDetails.country,
+            city: userDetails.city,
+            rate: userDetails.rate,
+            industry: userDetails.industry,
+            phoneNumber: userDetails.phoneNumber,
+            bankAcNo: userDetails.bankAcNo,
+            bankAcName: userDetails.bankAcName
+        })).rowsAffected
 
         return res.status(200).json({
             success: "Details updated successfully"
@@ -79,9 +78,8 @@ export const updateDetails = (async (req: Request, res: Response) => {
 
 export const getAllUsers = (async (req: Request, res: Response) => {
     try {
-        const pool = await mssql.connect(sqlConfig);
 
-        const users = (await pool.request().query('SELECT * FROM Users')).recordset;
+        const users = (await query('SELECT * FROM Users')).recordset;
 
         res.status(200).json({
             users
@@ -97,11 +95,10 @@ export const getAllUsers = (async (req: Request, res: Response) => {
 export const getOneUser = (async (req: Request, res: Response) => {
     try {
         const userId = req.params.id;
-        const pool = await mssql.connect(sqlConfig);
 
-        const user = (await pool.request()
-            .input('userId', userId)
-            .execute('getOneUser')).recordset;
+        let procedure = 'getOneUser';
+
+        const user = (await execute(procedure, { userId })).recordset
 
         return res.status(200).json({
             user
@@ -118,11 +115,9 @@ export const deleteUser = (async (req: Request, res: Response) => {
     try {
         const userId = req.params.id;
 
-        const pool = await mssql.connect(sqlConfig);
+        let procedure = 'deleteUser';
 
-        const result = (await pool.request()
-            .input('userId', userId)
-            .query('DELETE FROM Details WHERE userId = @userId; DELETE FROM Users WHERE userId = @userId; '))
+        const result = (await execute(procedure, { userId })).recordset
 
         return res.status(200).json({
             success: "User deleted successfully"
@@ -135,15 +130,13 @@ export const deleteUser = (async (req: Request, res: Response) => {
 });
 
 // Get details for a specific user
-
 export const userDetails = (async (req: Request, res: Response) => {
     try {
         const userId = req.params.id;
-        const pool = await mssql.connect(sqlConfig);
 
-        const details = (await pool.request()
-            .input('userId', userId)
-            .query('SELECT * FROM Details WHERE userId = @userId')).recordset
+        let procedure = 'userDetails';
+
+        const details = (await execute(procedure, { userId })).recordset
 
         return res.status(200).json({
             details
@@ -155,12 +148,12 @@ export const userDetails = (async (req: Request, res: Response) => {
     }
 })
 
-export const getAllSpecialists = (async(req: Request, res: Response) =>{
+export const getAllSpecialists = (async (req: Request, res: Response) => {
     try {
-        const pool = await mssql.connect(sqlConfig);
 
-        const specialists = (await pool.request()
-        .execute("getAllSpecialists")).recordset;
+        let procedure = 'getAllSpecialists';
+
+        const specialists = (await query(procedure)).recordset
 
         return res.status(200).json({
             specialists
@@ -172,19 +165,29 @@ export const getAllSpecialists = (async(req: Request, res: Response) =>{
     }
 })
 
-export const getOneSpecialist = (async(req: Request, res: Response) =>{
+export const getOneSpecialist = (async (req: Request, res: Response) => {
     try {
         const userId: string = req.params.id;
 
-        const pool = await mssql.connect(sqlConfig);
+        let procedure = 'getOneSpecialist'
 
-        const specialists = (await pool.request()
-        .input('userId', userId)
-        .execute('getOneSpecialist')).recordset
+        const specialists = (await execute(procedure, { userId })).recordset
 
         return res.status(200).json({
             specialists
         })
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
+})
+
+export const updateProfileImage = (async (req: Request, res: Response) => {
+    try {
+
+        const userId = req.params.id
+
     } catch (error) {
         return res.status(500).json({
             error

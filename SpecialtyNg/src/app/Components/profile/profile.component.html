@@ -6,10 +6,10 @@
         <div class="profile-details">
             <img src="{{user.profileImg}}" class="profile-img" alt="">
             <div>
-                <h3 class="profile-name">
+                <h3 class="profile-name m-2">
                     <p class="text-bold">Fullname:</p>{{user.fullName | titlecase}}
                 </h3>
-                <h3><p class="text-bold">Industry:</p>{{user.industry}}</h3>
+                <h3 class="m-2"><p class="text-bold">About:</p>{{user.about}}</h3>
             </div>
 
         </div>
@@ -18,6 +18,9 @@
     <div class="user-details">
         <h3>
             <p class="text-bold" style="font-weight: 600; margin: 2% 0;">Born in:</p> {{user.DOB | titlecase}}
+        </h3>
+        <h3>
+            <p class="text-bold" style="font-weight: 600; margin: 2% 0;">Country:</p> {{user.country | titlecase}}
         </h3>
         <h3>
             <p class="text-bold" style="font-weight: 600; margin: 2% 0;">City:</p> {{user.city | titlecase}}
@@ -63,7 +66,7 @@
             </option>
         </select>
 
-        <select name="country" id="country" formControlName="country">
+        <select name="country" id="country" formControlName="country" [(ngModel)]="country">
             <option value="">Select your country</option>
             <option *ngFor="let country of countriesArr | search: filter; let i = index" value="{{country.name}}-{{country.iso2}}">{{country.name}}-
                 {{country.iso2}}</option>

@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   industryArr: Industry[] = [];
   countriesArr: countriesApiResponse[] = [];
   filter = '';
+  country=''
 
   user: User = {} as User;
   userId!: string;
@@ -99,13 +100,33 @@ export class ProfileComponent implements OnInit {
     this.getUserDetails();
   }
 
+  showSuccess(msg: string){
+    Swal.fire({
+      title: "Success",
+      text: msg,
+      icon: "success"
+    });
+  }
+
+  showError(msg: string){
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: msg,
+    });
+  }
+
   updateDetails(){
     if(this.updateForm.valid){
       this.dataservice.updateUser(this.updateForm.value, this.userId).subscribe(res => {
         if (res.success){
+          this.visible = false
+          this.showSuccess(res.success)
           this.getUserDetails()
         }
       })
+    } else if(this.updateForm){
+      this.showError('Please fill in all the fields correctly')
     }
   }
 
