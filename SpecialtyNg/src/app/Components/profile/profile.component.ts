@@ -6,17 +6,20 @@ import { DataService } from '../../Services/data.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Industry } from '../../Interfaces/data.Interface';
+import { Industry, countriesApiResponse } from '../../Interfaces/data.Interface';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ CommonModule, ReactiveFormsModule ],
+  imports: [ CommonModule, ReactiveFormsModule, SearchPipe ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   industryArr: Industry[] = [];
+  countriesArr: countriesApiResponse[] = [];
+  filter = '';
 
   user: User = {} as User;
   userId!: string;
@@ -52,7 +55,24 @@ export class ProfileComponent implements OnInit {
       rate: ['', [Validators.required]]
     })
     this.getIndustries();
+    this.getAllCountries();
   }
+
+  async getAllCountries(){
+    const res =  await fetch('https://api.countrystatecity.in/v1/countries', {
+      headers: {
+        "X-CSCAPI-KEY": "bGM2ZzRGZm4xRzhnTzJkdmxkWEtlY2ROMmh3S1BYWXRsUWxTenVJYg=="
+      },
+      method: 'GET'
+    })
+
+    const data = await res.json()
+
+    data.forEach((data: countriesApiResponse) => {
+      this.countriesArr.push(data)
+    })
+  }
+
 
   ngOnInit(): void {
     this.getToken();
@@ -79,10 +99,32 @@ export class ProfileComponent implements OnInit {
     this.getUserDetails();
   }
 
+  updateDetails(){
+    if(this.updateForm.valid){
+      this.dataservice.updateUser(this.updateForm.value, this.userId).subscribe(res => {
+        if (res.success){
+          this.getUserDetails()
+        }
+      })
+    }
+  }
+
   getUserDetails() {
     this.dataservice.getUser(this.userId).subscribe(res => {
       console.log(res);
       this.user = res.user[0];
+      this.updateForm.patchValue({
+        gender: this.user.gender,
+        DOB: this.user.DOB,
+        about: this.user.about,
+        industry: this.user.industry,
+        country: this.user.country,
+        city: this.user.city,
+        phoneNumber: this.user.phoneNumber,
+        rate: this.user.rate,
+        bankAcNo: this.user.bankAcNo,
+        bankAcName: this.user.bankAcName
+      })
     });
   }
 }

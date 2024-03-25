@@ -9,7 +9,7 @@
                 <h3 class="profile-name">
                     <p class="text-bold">Fullname:</p>{{user.fullName | titlecase}}
                 </h3>
-                <!-- <h3><p class="text-bold">Industry:</p>{{user.industryName}}</h3> -->
+                <h3><p class="text-bold">Industry:</p>{{user.industry}}</h3>
             </div>
 
         </div>
@@ -39,7 +39,7 @@
 <!-- <button onclick="openForm()">Open Form</button> -->
 
 <div class="form-popup" id="myForm" *ngIf="visible">
-    <form class="form-container" [formGroup]="updateForm">
+    <form class="form-container" [formGroup]="updateForm" (ngSubmit)="updateDetails()">
         <i class="fa-regular fa-circle-xmark" style="float: right; font-size: 20px; color: red; cursor: pointer;"
             (click)="closeUpdateform()"></i>
         <h2>Update details</h2>
@@ -55,7 +55,7 @@
 
         <input type="date" placeholder="Enter DOB" name="DOB" id="DOB" required formControlName="DOB">
 
-        <textarea placeholder="Enter About" name="about" id="about" required></textarea>
+        <textarea placeholder="Enter About" name="about" id="about" required formControlName="about"></textarea>
 
         <select name="industry" id="industry" formControlName="industry">
             <option value="">Choose your area of work</option>
@@ -63,20 +63,29 @@
             </option>
         </select>
 
+        <select name="country" id="country" formControlName="country">
+            <option value="">Select your country</option>
+            <option *ngFor="let country of countriesArr | search: filter; let i = index" value="{{country.name}}-{{country.iso2}}">{{country.name}}-
+                {{country.iso2}}</option>
+        </select>
+
         <select name="city" id="city" formControlName="city">
             <option value="">Choose your city</option>
             <option value="Nairobi">Nairobi</option>
             <option value="Kampala">Kampala</option>
             <option value="Dodoma">Dodoma</option>
-          </select>
+        </select>
 
-        <input type="tel" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required formControlName="phoneNumber">
+        <input type="tel" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required
+            formControlName="phoneNumber">
 
-        <input type="number" placeholder="Enter Bank Account Number" name="bankAcNo" id="bankAcNo" required formControlName="bankAcNo">
+        <input type="number" placeholder="Enter Bank Account Number" name="bankAcNo" id="bankAcNo" required
+            formControlName="bankAcNo">
 
         <input type="number" placeholder="Enter Rate" name="rate" id="rate" required formControlName="rate" min="1">
 
-        <input type="text" placeholder="Enter Bank Account Name" name="bankAcName" id="bankAcName" required formControlName="bankAcName">
+        <input type="text" placeholder="Enter Bank Account Name" name="bankAcName" id="bankAcName" required
+            formControlName="bankAcName">
 
         <button type="submit" class="btn">Update details</button>
         <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
