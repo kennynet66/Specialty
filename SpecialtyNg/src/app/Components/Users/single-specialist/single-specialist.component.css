@@ -17,3 +17,26 @@
   .message-button:hover {
     background-color: #00755e;
   }
+
+  .break {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .scroll{
+    padding: 10px;
+    border: 2px solid #29ab87;
+    cursor: pointer;
+    width: 40%;
+  }
+
+  .scroll:hover{
+    background-color: #29ab87;
+    color: #fff;
+  }
+
+  /* .reviews {
+    height: 100vh;
+  } */

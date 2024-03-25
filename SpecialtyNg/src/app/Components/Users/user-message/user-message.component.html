@@ -9,25 +9,21 @@
             </div>
             <div class="mt-2">
                 <div class="flex flex-col -mx-4">
-                    <div class="relative flex flex-row items-center p-4" *ngFor="let chat of chats">
-                        <!-- <div
-                            class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
-                            K
-                        </div> -->
+                    <div class="relative flex flex-row items-center p-4" style="cursor: pointer;" *ngFor="let chat of chats">
                         <div class="flex flex-col flex-grow ml-3" (click)="getMessages(chat.chatId)">
                             <div class="text-sm font-medium">{{chat.fullName}}</div>
                             <div class="text-xs truncate w-40">{{chat.startedAt}}</div>
                         </div>
                     </div>
                 </div>
+                <div *ngIf="chats.length <= 0">
+                    <h2>You have no chats</h2>
+                </div>
             </div>
         </div>
     </div>
     <div class="flex flex-col h-full w-full bg-white px-4 py-6">
         <div class="flex flex-row items-center py-4 px-6 rounded-2xl shadow">
-            <!-- <div class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-100">
-                K
-            </div> -->
             <div class="flex flex-col ml-3">
                 <div class="font-semibold text-sm">SENDIT</div>
             </div>

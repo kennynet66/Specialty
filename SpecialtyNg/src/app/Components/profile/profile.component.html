@@ -6,19 +6,79 @@
         <div class="profile-details">
             <img src="{{user.profileImg}}" class="profile-img" alt="">
             <div>
-                <h3 class="profile-name" ><p class="text-bold">Fullname:</p>{{user.fullName}}</h3>
-            <!-- <h3><p class="text-bold">Industry:</p>{{user.industryName}}</h3> -->
+                <h3 class="profile-name">
+                    <p class="text-bold">Fullname:</p>{{user.fullName | titlecase}}
+                </h3>
+                <!-- <h3><p class="text-bold">Industry:</p>{{user.industryName}}</h3> -->
             </div>
-            
+
         </div>
-        
+
     </div>
     <div class="user-details">
-        <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">Born in:</p> {{user.DOB | titlecase}}</h3>
-        <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">City:</p> {{user.city | titlecase}}</h3>
-        <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">Email:</p> {{user.email | titlecase}}</h3>
-        <h3><p class="text-bold" style="font-weight: 600; margin: 2% 0;">Phone number:</p> {{user.phoneNumber | titlecase }}</h3>
-        <h3><p class="font-bold" style="font-weight: 600; margin: 2% 0;">Gender:</p> {{user.gender | titlecase}}</h3>
-        <button class="btn bg-teal-600 text-white m-2 hover:bg-teal-700" (click)="updateProfile()" >Update profile</button>
+        <h3>
+            <p class="text-bold" style="font-weight: 600; margin: 2% 0;">Born in:</p> {{user.DOB | titlecase}}
+        </h3>
+        <h3>
+            <p class="text-bold" style="font-weight: 600; margin: 2% 0;">City:</p> {{user.city | titlecase}}
+        </h3>
+        <h3>
+            <p class="text-bold" style="font-weight: 600; margin: 2% 0;">Email:</p> {{user.email | titlecase}}
+        </h3>
+        <h3>
+            <p class="text-bold" style="font-weight: 600; margin: 2% 0;">Phone number:</p> {{user.phoneNumber |
+            titlecase }}
+        </h3>
+        <h3>
+            <p class="font-bold" style="font-weight: 600; margin: 2% 0;">Gender:</p> {{user.gender | titlecase}}
+        </h3>
+        <button class="btn bg-teal-600 text-white m-2 hover:bg-teal-700" (click)="openUpdateForm()">Update
+            profile</button>
     </div>
 </section>
+<!-- <button onclick="openForm()">Open Form</button> -->
+
+<div class="form-popup" id="myForm" *ngIf="visible">
+    <form class="form-container" [formGroup]="updateForm">
+        <i class="fa-regular fa-circle-xmark" style="float: right; font-size: 20px; color: red; cursor: pointer;"
+            (click)="closeUpdateform()"></i>
+        <h2>Update details</h2>
+
+        <div class="radio-buttons">
+            <label>
+                <input type="radio" name="gender" value="male" formControlName="gender"> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female" formControlName="gender"> Female
+            </label>
+        </div>
+
+        <input type="date" placeholder="Enter DOB" name="DOB" id="DOB" required formControlName="DOB">
+
+        <textarea placeholder="Enter About" name="about" id="about" required></textarea>
+
+        <select name="industry" id="industry" formControlName="industry">
+            <option value="">Choose your area of work</option>
+            <option *ngFor="let industry of industryArr" value="{{industry.industryId}}">{{industry.industryName}}
+            </option>
+        </select>
+
+        <select name="city" id="city" formControlName="city">
+            <option value="">Choose your city</option>
+            <option value="Nairobi">Nairobi</option>
+            <option value="Kampala">Kampala</option>
+            <option value="Dodoma">Dodoma</option>
+          </select>
+
+        <input type="tel" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required formControlName="phoneNumber">
+
+        <input type="number" placeholder="Enter Bank Account Number" name="bankAcNo" id="bankAcNo" required formControlName="bankAcNo">
+
+        <input type="number" placeholder="Enter Rate" name="rate" id="rate" required formControlName="rate" min="1">
+
+        <input type="text" placeholder="Enter Bank Account Name" name="bankAcName" id="bankAcName" required formControlName="bankAcName">
+
+        <button type="submit" class="btn">Update details</button>
+        <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+    </form>
+</div>

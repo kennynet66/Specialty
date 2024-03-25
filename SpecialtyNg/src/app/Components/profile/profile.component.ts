@@ -5,53 +5,68 @@ import { User } from '../../Interfaces/user.Interface';
 import { DataService } from '../../Services/data.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Industry } from '../../Interfaces/data.Interface';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule, ReactiveFormsModule ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  industryArr: Industry[] = [];
 
   user: User = {} as User;
   userId!: string;
   token!: string;
 
+  visible = false;
+
+  updateForm!: FormGroup 
+
+  openUpdateForm(){
+    this.visible = true
+  }
+
+  closeUpdateform(){
+    this.visible = false
+  }
+
   constructor(
     private dataservice: DataService,
-    private router: Router,
-    private renderer: Renderer2,
+    private fb: FormBuilder,
     private route: ActivatedRoute
-  ) { }
+  ) { 
+    this.updateForm = this.fb.group({
+      gender: ['', [Validators.required]],
+      DOB: ['', [Validators.required]],
+      about: ['', [Validators.required]],
+      industry: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required]],
+      bankAcNo: ['', [Validators.required, Validators.min(0)]],
+      bankAcName: ['', [Validators.required]],
+      rate: ['', [Validators.required]]
+    })
+    this.getIndustries();
+  }
 
   ngOnInit(): void {
     this.getToken();
   }
 
-  async updateProfile() {
-    const { value: formValues } = await Swal.fire({
-      title: 'Update your details',
-      html: `
-        <input id="swal-input1" placeholder='Enter new phone number' type='number' class="swal2-input">
-        <input id="swal-input2" class="swal2-input">
-      `,
-      focusConfirm: false,
-      preConfirm: () => {
-        return [
-          (document.getElementById('swal-input1') as HTMLInputElement).value,
-          (document.getElementById('swal-input2') as HTMLInputElement).value
-        ];
-      }
-    });
-    if (formValues) {
-      console.log(formValues);
-      
-      Swal.fire(JSON.stringify(formValues));
-    }
-  }
+  getIndustries() {
+    this.dataservice.getAllIndustries().subscribe(res => {
+      // console.log(res);
 
+      if (res.industries) {
+        res.industries.forEach(industry => { this.industryArr.push(industry) })
+      }
+    })
+  }
   getToken() {
     this.token = localStorage.getItem('specialty_token') || '';
     this.getUserId();

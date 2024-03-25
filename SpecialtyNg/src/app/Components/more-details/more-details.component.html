@@ -10,47 +10,60 @@
         <label for="">Male</label>
         <input type="radio" name="gender" value="female" id="" formControlName="gender">
         <label for="">Female</label>
-        <div *ngIf="moreDetailsForm.get('gender')?.invalid && moreDetailsForm.get('gender')?.touched" id="error">Gender is required</div>
+        <div *ngIf="moreDetailsForm.get('gender')?.invalid && moreDetailsForm.get('gender')?.touched" id="error">Gender
+          is required</div>
       </div>
       <div class="input-div" id="DOB">
         <h4>Date of birth</h4>
         <input type="date" formControlName="DOB">
-        <div *ngIf="moreDetailsForm.get('DOB')?.invalid && moreDetailsForm.get('DOB')?.touched" id="error">Date of birth is required</div>
+        <div *ngIf="moreDetailsForm.get('DOB')?.invalid && moreDetailsForm.get('DOB')?.touched" id="error">Date of birth
+          is required</div>
       </div>
       <div class="input-div" id="about">
         <h2 class="text-2xl m-2">About</h2>
         <input type="number" name="" formControlName="rate" min="1" placeholder="Payment rate on an hourly basis" id="">
         <textarea placeholder="Tell us something about yourself" formControlName="about"></textarea>
-        <div id="error" *ngIf="moreDetailsForm.get('about')?.invalid && moreDetailsForm.get('about')?.touched">About you is required</div>
+        <div id="error" *ngIf="moreDetailsForm.get('about')?.invalid && moreDetailsForm.get('about')?.touched">About you
+          is required</div>
         <select name="industry" id="industry" formControlName="industry">
           <option value="">Choose your area of work</option>
-          <option *ngFor="let industry of industryArr" value="{{industry.industryId}}">{{industry.industryName}}</option>
+          <option *ngFor="let industry of industryArr" value="{{industry.industryId}}">{{industry.industryName}}
+          </option>
         </select>
-        <div id="error" *ngIf="moreDetailsForm.get('industry')?.invalid && moreDetailsForm.get('industry')?.touched">Industry is required</div>
+        <div id="error" *ngIf="moreDetailsForm.get('industry')?.invalid && moreDetailsForm.get('industry')?.touched">
+          Industry is required</div>
       </div>
       <div class="input-div" id="address">
         <h2 class="text-2xl m-2">Address information</h2>
         <select name="country" id="country" formControlName="country">
           <option value="">Select your country</option>
-          <option  *ngFor="let country of countriesArr | search: filter; let i = index" value="kenya">{{country.name}}- {{country.iso2}}</option>
+          <option *ngFor="let country of countriesArr | search: filter; let i = index" value="kenya">{{country.name}}-
+            {{country.iso2}}</option>
         </select>
-        <div id="error" *ngIf="moreDetailsForm.get('country')?.invalid && moreDetailsForm.get('country')?.touched">Country is required</div>
-        <select name="city" id="city" formControlName="city" >
+        <div id="error" *ngIf="moreDetailsForm.get('country')?.invalid && moreDetailsForm.get('country')?.touched">
+          Country is required</div>
+        <select name="city" id="city" formControlName="city">
           <option value="">Choose your city</option>
           <option value="Nairobi">Nairobi</option>
           <option value="Kampala">Kampala</option>
           <option value="Dodoma">Dodoma</option>
         </select>
-        <div id="error" *ngIf="moreDetailsForm.get('city')?.invalid && moreDetailsForm.get('city')?.touched">City is required</div>
+        <div id="error" *ngIf="moreDetailsForm.get('city')?.invalid && moreDetailsForm.get('city')?.touched">City is
+          required</div>
         <input type="text" placeholder="Phone number" formControlName="phoneNumber">
-        <div id="error" *ngIf="moreDetailsForm.get('phoneNumber')?.invalid && moreDetailsForm.get('phoneNumber')?.touched">Phone number is required</div>
+        <div id="error"
+          *ngIf="moreDetailsForm.get('phoneNumber')?.invalid && moreDetailsForm.get('phoneNumber')?.touched">Phone
+          number is required</div>
       </div>
       <div class="input-div" id="bank-creds">
         <h2 class="text-2xl m-2">Bank credentials</h2>
         <input type="number" min="0" placeholder="Account number" formControlName="bankAcNo">
-        <div id="error" *ngIf="moreDetailsForm.get('bankAcNo')?.invalid && moreDetailsForm.get('bankAcNo')?.touched">Bank account number is required</div>
+        <div id="error" *ngIf="moreDetailsForm.get('bankAcNo')?.invalid && moreDetailsForm.get('bankAcNo')?.touched">
+          Bank account number is required</div>
         <input type="text" placeholder="Account name" formControlName="bankAcName">
-        <div id="error" *ngIf="moreDetailsForm.get('bankAcName')?.invalid && moreDetailsForm.get('bankAcName')?.touched">Bank account name is required</div>
+        <div id="error"
+          *ngIf="moreDetailsForm.get('bankAcName')?.invalid && moreDetailsForm.get('bankAcName')?.touched">Bank account
+          name is required</div>
       </div>
       <input type="submit" value="Save Details" class="btn">
     </form>
