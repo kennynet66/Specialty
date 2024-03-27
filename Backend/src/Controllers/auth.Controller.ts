@@ -53,7 +53,7 @@ export const registerUser = (async (req: Request, res: Response) => {
             .execute('registerUser')
         ).rowsAffected
 
-        return res.status(202).json({
+        return res.status(200).json({
             success: "Registered successfully"
         })
     } catch (error) {
