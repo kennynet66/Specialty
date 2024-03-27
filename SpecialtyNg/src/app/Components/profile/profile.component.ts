@@ -27,8 +27,17 @@ export class ProfileComponent implements OnInit {
   token!: string;
 
   visible = false;
+  dropArea = false;
 
-  updateForm!: FormGroup 
+  updateForm!: FormGroup ;
+
+  openDropArea(){
+    this.dropArea = true
+  }
+
+  closeDropArea(){
+    this.dropArea = false
+  }
 
   openUpdateForm(){
     this.visible = true
@@ -36,6 +45,21 @@ export class ProfileComponent implements OnInit {
 
   closeUpdateform(){
     this.visible = false
+  }
+
+  updateProfileImage(){
+    
+    if(this.imageForm.valid){
+      this.dataservice.updateProfileImage(this.userId, this.imageForm.value).subscribe(res => {
+        if(res.success){
+          this.showSuccess(res.success)
+          this.getUserDetails()
+          this.closeDropArea();
+        }
+      })
+    } else if(!this.imageForm.valid){
+      this.showError('Please upload an image')
+    }    
   }
 
   constructor(
@@ -55,6 +79,11 @@ export class ProfileComponent implements OnInit {
       bankAcName: ['', [Validators.required]],
       rate: ['', [Validators.required]]
     })
+
+    this.imageForm = this.fb.group({
+      image: ['', Validators.required]
+    })
+
     this.getIndustries();
     this.getAllCountries();
   }
@@ -148,4 +177,40 @@ export class ProfileComponent implements OnInit {
       })
     });
   }
+
+  imageForm!: FormGroup
+  imgUrl!: string
+
+  async uploadImage(event: any){
+        
+    const target = event.target
+    const files = target.files
+    if(files){
+        console.log(files)
+        const formData = new FormData()
+        formData.append("file", files[0])
+        formData.append("upload_preset", "specialtyImageUploads")
+        formData.append("cloud_name", "dtvrzfi1b")
+  
+          console.log(formData);
+          await fetch('https://api.cloudinary.com/v1_1/dtvrzfi1b/image/upload', {
+            method: "POST",
+            body: formData
+          }).then(
+            (res:any) => {
+              return res.json()  
+            },
+          ).then(data=>{
+            console.log("this is the URL",data.url);
+            this.imageForm.get('image')?.setValue(data.url)
+            this.updateProfileImage()
+            return data.url = this.imgUrl;
+            
+          }
+          );
+  
+    }
+  
+  }
+  
 }

@@ -41,3 +41,11 @@ GET http://localhost:3900/users/all-specialists
 
 ### Get one specialist
 GET http://localhost:3900/users/specialist/c58b30b2-07f3-44e7-84a0-714e445ef954
+
+### Update profile Image
+POST http://localhost:3900/users/setProfileImage/c58b30b2-07f3-44e7-84a0-714e445ef954
+Content-Type: application/json
+
+{
+    "image": "https://res.cloudinary.com/dtvrzfi1b/image/upload/v1711443985/ffctrsnp5nj5gaueazzn.jpg"
+}

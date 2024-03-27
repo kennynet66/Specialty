@@ -4,12 +4,14 @@
     </div>
     <div class="profile-div">
         <div class="profile-details">
-            <img src="{{user.profileImg}}" class="profile-img" alt="">
+            <img src="{{user.profileImg}}" class="profile-img" alt="" (click)="openDropArea()">
             <div>
                 <h3 class="profile-name m-2">
                     <p class="text-bold">Fullname:</p>{{user.fullName | titlecase}}
                 </h3>
-                <h3 class="m-2"><p class="text-bold">About:</p>{{user.about}}</h3>
+                <h3 class="m-2">
+                    <p class="text-bold">About:</p>{{user.about}}
+                </h3>
             </div>
 
         </div>
@@ -68,7 +70,8 @@
 
         <select name="country" id="country" formControlName="country" [(ngModel)]="country">
             <option value="">Select your country</option>
-            <option *ngFor="let country of countriesArr | search: filter; let i = index" value="{{country.name}}-{{country.iso2}}">{{country.name}}-
+            <option *ngFor="let country of countriesArr | search: filter; let i = index"
+                value="{{country.name}}-{{country.iso2}}">{{country.name}}-
                 {{country.iso2}}</option>
         </select>
 
@@ -94,3 +97,23 @@
         <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
     </form>
 </div>
+
+<section class="upload-img" *ngIf="dropArea">
+    <i class="fa-regular fa-circle-xmark ml-2" style="float: right; font-size: 20px; color: red; cursor: pointer;"
+        (click)="closeDropArea()"></i>
+    <form [formGroup]="imageForm" (ngSubmit)="updateProfileImage()">
+        <div class="img-and-btn">
+            <!-- Image Upload Section -->
+            <div class="image-upload-section">
+                <!-- <label for="productImage">New pofile image:</label> -->
+                <div id="drop-area" (click)="fileInput.click()">
+                    <i class="fa-regular fa-image"></i>
+                    <p>Drop an image here or browse</p>
+                    <input type="submit" value="Upload">
+                </div>
+                <input type="file" #fileInput id="fileInput" name="productImage" accept="image/*" required
+                    (change)="uploadImage($event)" />
+            </div>
+        </div>
+    </form>
+</section>

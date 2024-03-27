@@ -3,7 +3,7 @@ CREATE OR ALTER PROCEDURE chatMessages(
 )
 AS
 BEGIN
-    SELECT m.*, c.senderId, c.receiverId FROM Messages m
+    SELECT m.* FROM Messages m
     INNER JOIN Chats c
     ON m.chatId = c.chatId
     WHERE m.chatId = @chatId

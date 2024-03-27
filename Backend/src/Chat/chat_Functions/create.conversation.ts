@@ -13,7 +13,7 @@ export async function createConversation(senderId: string, receiverId: string, m
             const chatId: string = exists.recordset[0].chatId as string
             procedure = 'createMessage';
             const messageId = v4();
-            const result = await  execute(procedure, {chatId, message, messageId})
+            const result = await  execute(procedure, {chatId, message, messageId, receiverId, senderId})
         }
         else{
             const chatId = v4();

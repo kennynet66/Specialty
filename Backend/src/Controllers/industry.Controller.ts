@@ -4,6 +4,7 @@ import mssql from 'mssql';
 import { sqlConfig } from "../Config/sql.Config";
 import { Industry } from "../Interfaces/industry.Interface";
 import { industrySchema } from "../Validators/industry.Validator";
+import { execute } from "../dbHelper/dbHelper";
 
 export const createIndustry = (async (req: Request, res: Response) => {
     try {
@@ -91,10 +92,19 @@ export const deleteIndustry = (async (req: Request, res: Response) => {
 })
 
 // Get users in an industry
-const userIdustry = (async (req: Request, res: Response) =>{
+const userIndustry = (async (req: Request, res: Response) =>{
     try {
-        
+        const industryId = req.params.id;
+        let procedure = 'userIndustry';
+
+        const users = (await execute(procedure, {industryId})).recordset
+
+        return res.status(200).json({
+            users
+        })
     } catch (error) {
-        
+        return res.status(500).json({
+            error
+        })
     }
 })

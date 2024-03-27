@@ -9,6 +9,6 @@ AS
 BEGIN
     INSERT INTO Chats(chatId, senderId, receiverId, startedAt)
     VALUES(@chatId, @senderId, @receiverId, GETDATE());
-    INSERT INTO Messages(messageId, chatId, message, sentAt)
-	VALUES(@messageId, @chatId, @message, GETDATE());
+    INSERT INTO Messages(messageId, chatId, message, sentAt, receiverId, senderId)
+	VALUES(@messageId, @chatId, @message, GETDATE(), @receiverId,@senderId);
 END;

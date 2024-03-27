@@ -1,0 +1,8 @@
+POST http://localhost:3900/reviews/create-review/dfugxihfucj3c/trtfxdga7x83yh
+
+{
+    "review": "This is nice"
+}
+
+### Get reviews
+GET http://localhost:3900/reviews/user-reviews/74361e72-c9a9-4d9d-acea-9158894be41d

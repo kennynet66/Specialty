@@ -1,74 +1,103 @@
+
 <section class="text-gray-600 body-font overflow-hidden">
-    <div class="container p-10 mx-auto">
-      <div class="lg:w-4/5 mx-auto flex flex-wrap">
-        <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://picsum.photos/400/400">
-        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-          <h2 class="text-sm title-font text-gray-500 tracking-widest">{{specialist[0].industryName}}</h2>
-          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{specialist[0].fullName | titlecase}}</h1>
-          <div class="flex mb-4">
-            <span class="flex items-center">
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-              <span class="text-gray-600 ml-3">4 Reviews</span>
-            </span>
-          </div>
-          <p class="leading-relaxed">{{specialist[0].about}}</p>
-          <div class="flex mt-5">
-            <span class="title-font font-medium text-2xl text-gray-900">{{specialist[0].rate | currency: 'USD'}}/hr</span>
-            <button class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Hire specialist</button>
+  <div class="container p-10 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+        src="{{specialist[0].profileImg}}" style="width: 350px; height: 400px; object-fit: cover;">
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">{{specialist[0].industryName}}</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{specialist[0].fullName | titlecase}}</h1>
+        <div class="flex mb-4">
+          <span class="flex items-center">
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+              </path>
+            </svg>
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+              </path>
+            </svg>
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+              </path>
+            </svg>
+            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2" class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+              </path>
+            </svg>
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              class="w-4 h-4 text-green-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+              </path>
+            </svg>
+            <span class="text-gray-600 ml-3">({{reviewsArr.length}}) Reviews</span>
+          </span>
+        </div>
+        <p class="leading-relaxed">{{specialist[0].about}}</p>
+        <div class="flex mt-5">
+          <span class="title-font font-medium text-2xl text-gray-900">{{specialist[0].rate | currency: 'USD'}}/hr</span>
+          <button
+            class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Hire
+            specialist</button>
+          <button (click)="openReview()"
+            class="flex ml-auto border-green-500 border-2 py-2 px-6 focus:outline-none hover:bg-green-600 hover:border-2 hover:border-green-600 hover:text-white rounded">Make
+            Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="message-button" routerLink="../../messages/{{specialist[0].userId}}"><i
+      class="fa-regular fa-comment"></i></a>
+</section>
+
+<section class="break">
+  <a href="user-dashboard/specialist/{{specialist[0].userId}}#reviews" class="scroll">Read reviews</a>
+</section>
+
+<section class="reviews" id="reviews">
+  <section class="text-gray-600 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4">
+        <div class="lg:w-1/3 lg:mb-0 mb-6 p-4" *ngFor="let review of reviewsArr">
+          <div class="h-full text-center">
+            <img alt="testimonial"
+              class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100"
+              src="{{review.profileImg}}">
+            <p class="leading-relaxed">{{review.review}}</p>
+            <span class="inline-block h-1 w-10 rounded bg-green-500 mt-6 mb-4"></span>
+            <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">{{review.fullName | titlecase}}</h2>
           </div>
         </div>
       </div>
     </div>
-    <a class="message-button" routerLink="../../messages/{{specialist[0].userId}}"><i class="fa-regular fa-comment"></i></a>
   </section>
+</section>
 
-  <section class="break">
-    <a href="user-dashboard/specialist/{{specialist[0].userId}}#reviews" class="scroll">Read reviews</a>
-  </section>
+<div class="review-form" *ngIf="visible">
+  <form [formGroup]="reviewForm" class="review flex flex-column text-center" (ngSubmit)="createReview()">
+    <div style="width: 50%; display: flex; align-items: center; justify-content: space-between;">
+      <h1 class="text-2xl text-bold m-2 items-center">Make review</h1>
+      <i class="fa-regular fa-circle-xmark" style="float: right; font-size: 25px; color: red; cursor: pointer;"
+        (click)="closeReview()"></i>
+    </div>
 
-  <section class="reviews" id="reviews">
-    <section class="text-gray-600 body-font">
-      <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-wrap -m-4">
-          <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
-            <div class="h-full text-center">
-              <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://picsum.photos/300/300">
-              <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
-              <span class="inline-block h-1 w-10 rounded bg-green-500 mt-6 mb-4"></span>
-              <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HOLDEN CAULFIELD</h2>
-            </div>
-          </div>
-          <div class="lg:w-1/3 lg:mb-0 mb-6 p-4">
-            <div class="h-full text-center">
-              <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://picsum.photos/400/400">
-              <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
-              <span class="inline-block h-1 w-10 rounded bg-green-500 mt-6 mb-4"></span>
-              <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">ALPER KAMU</h2>
-            </div>
-          </div>
-          <div class="lg:w-1/3 lg:mb-0 p-4">
-            <div class="h-full text-center">
-              <img alt="testimonial" class="w-20 h-20 mb-8 object-cover object-center rounded-full inline-block border-2 border-gray-200 bg-gray-100" src="https://picsum.photos/400/400">
-              <p class="leading-relaxed">Edison bulb retro cloud bread echo park, helvetica stumptown taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut adaptogen squid fanny pack vaporware.</p>
-              <span class="inline-block h-1 w-10 rounded bg-green-500 mt-6 mb-4"></span>
-              <h2 class="text-gray-900 font-medium title-font tracking-wider text-sm">HENRY LETHAM</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
+    <textarea name="" id="" cols="30" rows="10" formControlName="review" placeholder="Write your review here...."></textarea>
+    <input type="submit" value="Submit Review" class="submit-review">
+    <!-- <button class="close" (click)="closeReview()">Close</button> -->
+  </form>
+</div>
+
+<section *ngIf="reviewsArr.length <= 0" style="display: flex; justify-content: center; text-align: center; flex-direction: column; align-items: center;">
+  <div style="top: 20%;">
+  <h1 class="m-2 text-center text-bold text-2xl">No reviews at the moment</h1>
+  <div>
+    <img src="../../../../assets/octocat.png" alt="" style="width: 200px;">
+  </div>
+  <button (click)="openReview()"
+    class="m-2 border-green-500 border-2 py-2 px-6 focus:outline-none hover:bg-green-600 hover:border-2 hover:border-green-600 hover:text-white rounded">Be the first to review</button>
+  </div>
+</section>

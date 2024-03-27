@@ -183,11 +183,23 @@ export const getOneSpecialist = (async (req: Request, res: Response) => {
     }
 })
 
-export const updateProfileImage = (async (req: Request, res: Response) => {
+export const updateProfileImg = (async (req: Request, res: Response) =>{
     try {
+        const id = req.params.id;
 
-        const userId = req.params.id
+        console.log(id);
+        
+        
+        const {image} = req.body
+        
+        console.log(req.body);
+        let procedure = 'updateProfileImage';
 
+        const result = (await execute(procedure, {id, image})).rowsAffected
+
+        return res.status(200).json({
+            success: "Profile image updated successfully"
+        })
     } catch (error) {
         return res.status(500).json({
             error

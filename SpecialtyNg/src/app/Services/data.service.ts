@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { allIndustriesResponse, countriesApiResponse, specialistResponse, updateUserDetails } from '../Interfaces/data.Interface';
 import { oneUserResponse } from '../Interfaces/user.Interface';
+import { createInterfaceResponse, reviewsResponse } from '../Interfaces/reviews.Interface';
+// import { reviewsResponse } from '../Interfaces/review.Interface'
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +42,17 @@ export class DataService {
 
   getOneSpecialist(specialistId: string){
     return this.http.get<specialistResponse>(`http://localhost:3900/users/specialist/${specialistId}`)
+  }
+  
+  createReview(userId: string, specialistId: string, review: string ){
+    return this.http.post<createInterfaceResponse>(`http://localhost:3900/reviews/create-review/${userId}/${specialistId}`, { review })
+  }
+
+  getReviews(specialistId: string){
+    return this.http.get<reviewsResponse>(`http://localhost:3900/reviews/user-reviews/${specialistId}`)
+  }
+
+  updateProfileImage(id: string, image: string){
+    return this.http.post<{success: string, error: string}>(`http://localhost:3900/users/setProfileImage/${id}`, image)
   }
 }

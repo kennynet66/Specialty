@@ -18,7 +18,7 @@ import { Chat, MessageInterface } from '../../../Interfaces/message.Interface';
 export class UserMessageComponent {
 
   // message: string = '';
-  messages: Message[] = []
+  messages: any[] = []
   senderId!: string;
   recipientId!: string;
   messageForm!: FormGroup;
@@ -65,7 +65,7 @@ export class UserMessageComponent {
     this.socket.emit('message', { message: this.messageForm.value.message, recipientId: this.recipientId });
     let messageObj = {
       message: this.messageForm.value.message,
-      sender: this.senderId
+      senderId: this.senderId
     }
 
     this.messages.push(messageObj)
@@ -94,7 +94,9 @@ export class UserMessageComponent {
     this.messageservice.getMessages(chatId).subscribe(res => {
       console.log(res);
       res.messages.forEach(message => {
-        this.Messages.push(message)
+        console.log(message.senderId);
+        
+        this.messages.push(message)
       })
       
     })

@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from './Routes/user.Routes';
 import chatRoutes from './Routes/chat.Routes';
 import reviewRoutes from './Routes/reviews.Routes';
+import bookingRoutes from './Routes/booking.Routes';
 dotenv.config();
 
 const app = express();
@@ -20,7 +21,8 @@ app.use('/auth', authRoutes);
 app.use('/industry', industryRoutes);
 app.use('/users', userRoutes);
 app.use('/chats', chatRoutes);
-app.use('/reviews', reviewRoutes)
+app.use('/reviews', reviewRoutes);
+app.use('bookings', bookingRoutes)
 
 app.listen(PORT, () => {
     console.log('App is listening on port', PORT);

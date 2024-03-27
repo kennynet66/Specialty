@@ -39,7 +39,7 @@ io.on('connection', (socket: Socket) => {
     recipientSocket.emit('message',
     {
     message: message.message,
-    sender: senderId
+    senderId: senderId
     });
     console.log("emitting to recipient", message.recipientId);
     } else {

@@ -8,7 +8,7 @@ export const createReview = (async (req: Request, res: Response) => {
         const userId = req.params.userId;
         const specialistId = req.params.specialistId
         const reviewId = v4();
-        const review: Review = req.body
+        const {review} = req.body
 
         let procedure = 'createReview'
 
@@ -28,7 +28,7 @@ export const getUserReviews = (async (req: Request, res: Response)=>{
     try {
         const userId = req.params.id;
         let procedure = 'userReviews';
-        const reviews = execute(procedure, {userId});
+        const reviews = (await execute(procedure, {userId})).recordset;
         
         return res.status(200).json({
             reviews

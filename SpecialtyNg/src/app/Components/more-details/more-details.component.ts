@@ -49,7 +49,7 @@ export class MoreDetailsComponent {
     })
   }
 
-  constructor(private dataservice: DataService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
+  constructor(public dataservice: DataService, public fb: FormBuilder, public route: ActivatedRoute, public router: Router) {
     this.getIndustries()
     this.moreDetailsForm = this.fb.group({
       gender: ['', [Validators.required]],
