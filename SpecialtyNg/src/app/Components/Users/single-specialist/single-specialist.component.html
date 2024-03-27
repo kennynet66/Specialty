@@ -40,7 +40,7 @@
         <p class="leading-relaxed">{{specialist[0].about}}</p>
         <div class="flex mt-5">
           <span class="title-font font-medium text-2xl text-gray-900">{{specialist[0].rate | currency: 'USD'}}/hr</span>
-          <button
+          <button (click)="openBooking()"
             class="flex ml-auto text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded">Hire
             specialist</button>
           <button (click)="openReview()"
@@ -101,3 +101,22 @@
     class="m-2 border-green-500 border-2 py-2 px-6 focus:outline-none hover:bg-green-600 hover:border-2 hover:border-green-600 hover:text-white rounded">Be the first to review</button>
   </div>
 </section>
+
+<div class="form-popup" id="myForm" *ngIf="visible1">
+  <form class="form-container" [formGroup]="bookingForm" (ngSubmit)="createBooking()">
+      <i class="fa-regular fa-circle-xmark" style="float: right; font-size: 20px; color: red; cursor: pointer;"
+        (click)="closeBooking()"  ></i>
+      <h2 class="text-2xl">Hire specialist form</h2>
+
+      <textarea placeholder="Enter About" name="about" id="about" required formControlName="jobDescription" placeholder="Please write a clear and concise job description"></textarea>
+
+      <input type="number" placeholder="Enter expected duration in hours" name="bankAcNo" id="bankAcNo" required
+          formControlName="duration" [(ngModel)]="duration">
+
+      <p>Amount to pay:</p>
+      <input type="number" [ngModel]="duration * specialist[0].rate" readonly value="" name="rate" id="rate" required formControlName="salary" min="1">
+
+      <button type="submit" class="btn">Send hire request</button>
+      <!-- <button type="button" class="btn cancel" onclick="closeForm()">Close</button> -->
+  </form>
+</div>

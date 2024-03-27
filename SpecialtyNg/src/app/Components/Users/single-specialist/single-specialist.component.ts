@@ -1,10 +1,10 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, Input, OnInit, input } from '@angular/core';
 import { DataService } from '../../../Services/data.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Specialist } from '../../../Interfaces/data.Interface';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { oneReview } from '../../../Interfaces/reviews.Interface';
 
@@ -12,11 +12,15 @@ import { oneReview } from '../../../Interfaces/reviews.Interface';
 @Component({
   selector: 'app-single-specialist',
   standalone: true,
-  imports: [ CommonModule, RouterLink, ReactiveFormsModule ],
+  imports: [ CommonModule, RouterLink, ReactiveFormsModule, FormsModule ],
   templateUrl: './single-specialist.component.html',
   styleUrl: './single-specialist.component.css'
 })
-export class SingleSpecialistComponent {
+export class SingleSpecialistComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.getId()
+  }
 
   specialistId!: string;
   specialist: Specialist[] = [];
@@ -24,6 +28,18 @@ export class SingleSpecialistComponent {
   reviewForm!: FormGroup;
   userId!: string;
   reviewsArr: oneReview[] = [];
+  duration!: number
+
+  bookingForm!: FormGroup
+  visible1 = false;
+
+  openBooking(){
+    this.visible1 = true
+  }
+
+  closeBooking(){
+    this.visible1 = false
+  }
 
   getUserId(){
     const token: string = localStorage.getItem('specialty_token') as string
@@ -31,6 +47,7 @@ export class SingleSpecialistComponent {
     this.authservice.checkUserDetails(token).subscribe(res => {
       this.userId = res.info.userId
     })
+    
   }
 
   openReview(){
@@ -69,7 +86,12 @@ export class SingleSpecialistComponent {
     this.reviewForm = this.fb.group({
       review: ['', Validators.required]
     })
-    this.getId()
+    this.bookingForm = this.fb.group({
+      jobDescription: ['', Validators.required],
+      duration: ['', Validators.required],
+      salary: ['', Validators.required]
+    })
+    // this.getId()
   }
 
   getReviews(){
@@ -106,5 +128,19 @@ export class SingleSpecialistComponent {
         this.specialist.push(specialist)
       })
     })
+  }
+
+  createBooking(){
+    if(this.bookingForm.valid){
+      this.dataservice.createBooking(this.userId, this.specialistId, this.bookingForm.value).subscribe(res => {
+        if(res.success){
+          this.showSuccess(res.success);
+          this.bookingForm.reset();
+          this.visible1 = false;
+        }
+      })
+    } else if(!this.bookingForm.valid){
+      this.showError('Please fill in all the fields correctly')
+    }
   }
 }

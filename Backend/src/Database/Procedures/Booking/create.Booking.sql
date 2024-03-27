@@ -1,18 +1,39 @@
-CREATE OR ALTER PROCEDURE creatBooking(
+CREATE OR ALTER PROCEDURE createBooking(
     @bookingId VARCHAR(255),
     @userId VARCHAR(255),
     @specialistId VARCHAR(255),
-    @duration INT,
     @jobDescription text,
-    @salary INT
+    @salary INT,
+    @duration INT
 )
 AS
 BEGIN
     INSERT INTO Booking
-        ( bookingId, userId, specialistId, duration, jobDescription, salary
+        ( bookingId, userId, specialistId, jobDescription, salary, duration
         )
     VALUES
     (
-        @bookingId, @userId, @specialistId, @duration, @jobDescription, @salary
+        @bookingId, @userId, @specialistId, @jobDescription, @salary,  @duration
     )
 END
+
+    INSERT INTO Booking
+        ( 
+            bookingId,
+            userId,
+            specialistId,
+            jobDescription,
+            salary,
+            duration
+        )
+    VALUES
+    (
+        'tctvyb',
+        'gvgvv',
+        'ygdsvtv',
+        'njn yhyuy',
+        12,
+        12
+    )
+
+SELECT * FROM Booking

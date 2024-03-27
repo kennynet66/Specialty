@@ -1,0 +1,12 @@
+POST http://localhost:3900/bookings/create-booking/a3d38944-ee8a-4100-9b92-5452f1f52211/c58b30b2-07f3-44e7-84a0-714e445ef954
+Content-Type: application/json
+
+{
+    "jobDescription": "swedrtfyuhij",
+    "salary": 2345,
+    "duration": 3456
+}
+
+
+### User bookings
+GET http://localhost:3900/bookings/user-bookings/c58b30b2-07f3-44e7-84a0-714e445ef954

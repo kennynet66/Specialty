@@ -5,5 +5,5 @@ AS
 BEGIN
     UPDATE Booking
     SET isAccepted = 1
-    WHERE isCanceled = 0
+    WHERE bookingId = @bookingId
 END

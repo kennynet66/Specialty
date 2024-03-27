@@ -27,20 +27,26 @@ export class HomeComponent {
   }
 
   filterIndustry(industryName: string) {
-    this.specialistsArr.find(specialists => {
-      console.log(specialists);
-      
-      return specialists
-    })
-    // this.specialistsArr.filter(specialists => {
-    //   if(specialists.industryName === industryName){
-    //     console.log(specialists);
-        
-    //     this.copyArr = [];
-    //     return this.copyArr.push(specialists)
-    //   }
-    // })
+    this.specialistsArr = this.specialistsArr.filter(specialist => {
+      return specialist.industryName === industryName;
+    });
   }
+
+  // filterIndustry(industryName: string) {
+    // this.specialistsArr.find(specialists => {
+    //   console.log(specialists);
+      
+    //   return specialists
+    // })
+  //   this.specialistsArr.filter(specialists => {
+  //     if(specialists.industryName === industryName){
+  //       console.log(specialists);
+        
+  //       this.copyArr = [];
+  //       return this.copyArr.push(specialists)
+  //     }
+  //   })
+  // }
   constructor(private dataservice: DataService){
     this.getAllSpecialists();
     this.getIndustries();

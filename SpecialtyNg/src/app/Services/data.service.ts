@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { allIndustriesResponse, countriesApiResponse, specialistResponse, updateUserDetails } from '../Interfaces/data.Interface';
 import { oneUserResponse } from '../Interfaces/user.Interface';
 import { createInterfaceResponse, reviewsResponse } from '../Interfaces/reviews.Interface';
+import { bookingResponse } from '../Interfaces/booking.Interface';
 // import { reviewsResponse } from '../Interfaces/review.Interface'
 
 @Injectable({
@@ -55,4 +56,22 @@ export class DataService {
   updateProfileImage(id: string, image: string){
     return this.http.post<{success: string, error: string}>(`http://localhost:3900/users/setProfileImage/${id}`, image)
   }
+
+  createBooking(userId: string, specialistId: string, details: bookingDetails){
+    return this.http.post<{success: string, error: string}>(`http://localhost:3900/bookings/create-booking/${userId}/${specialistId}`, details)
+  }
+
+  getUserBookings(userId: string){
+    return this.http.get<bookingResponse>(`http://localhost:3900/bookings/user-bookings/${userId}`)
+  }
+
+  acceptBooking(bookingId: string){
+    return this.http.put<{success: string}>(`http://localhost:3900/bookings/accept-booking/${bookingId}`, {})
+  }
+}
+
+interface bookingDetails {
+  jobDescription: string,
+  duration: number,
+  salary: number
 }

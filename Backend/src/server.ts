@@ -22,7 +22,7 @@ app.use('/industry', industryRoutes);
 app.use('/users', userRoutes);
 app.use('/chats', chatRoutes);
 app.use('/reviews', reviewRoutes);
-app.use('bookings', bookingRoutes)
+app.use('/bookings', bookingRoutes)
 
 app.listen(PORT, () => {
     console.log('App is listening on port', PORT);

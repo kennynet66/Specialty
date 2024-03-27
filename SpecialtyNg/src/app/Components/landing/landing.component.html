@@ -1,16 +1,27 @@
 <app-navbar></app-navbar>
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+  <!-- <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
+  </div> -->
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="3000">
       <div class="carousel-one">
         <div class="content">
           <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
-          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.
+          </p>
+          <ul style="font-size: 20px;">
+            <li class="list-disc">Access a diverse pool of specialists from around the globe.</li>
+            <li>Connect with experts in various fields, ensuring comprehensive support.</li>
+            <li>Tap into the knowledge and experience of world-class professionals.</li>
+            <li>Benefit from a secure platform that safeguards your interactions and data.</li>
+            <li>Gain access to specialists with proven track records of excellence.</li>
+          </ul>
         </div>
         <img src="../../../assets/stats.png" alt="">
       </div>
@@ -19,7 +30,15 @@
       <div class="carousel-one">
         <div class="content">
           <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
-          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.
+          </p>
+          <ul style="font-size: 20px;">
+            <li>Expand your network by connecting with specialists from different backgrounds.</li>
+            <li>Receive personalized assistance tailored to your specific needs and goals.</li>
+            <li>Collaborate with specialists who are leaders in their respective industries.</li>
+            <li>Engage with a community of skilled professionals dedicated to providing top-notch support.</li>
+            <li>Access a wide range of expertise to address any challenge or project.</li>
+          </ul>
         </div>
         <img src="../../../assets/sales.jpg" alt="">
       </div>
@@ -28,18 +47,25 @@
       <div class="carousel-one">
         <div class="content">
           <h1 class="text-5xl">Connect to the worlds largest pool of Specialists</h1>
-          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.</p>
+          <p class="text-2xl m-2">We offer you a secure platform to connect with talented and world class specialists.
+          </p>
+          <ul style="font-size: 20px;">
+            <li>Enjoy peace of mind knowing that you're connecting with vetted specialists.</li>
+            <li>Maximize your opportunities by leveraging the expertise of specialists worldwide.</li>
+            <li>Utilize a platform that prioritizes confidentiality and privacy.</li>
+            <li>Connect with specialists who can offer innovative solutions and fresh perspectives.</li>
+          </ul>
         </div>
         <img src="../../../assets/stats.png" alt="">
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span class="carousel-control-prev-icon scroll-btn" aria-hidden="true"></span>
   </button>
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span class="carousel-control-next-icon scroll-btn" aria-hidden="true"></span>
-  </button>
+  </button> -->
 </div>
 
 <section class="clients">
@@ -91,7 +117,7 @@
 </section>
 
 <section class="industries">
-  <h1 class="text-2xl" >Talents we offer</h1>
+  <h1 class="text-2xl">Talents we offer</h1>
   <div class="industry">
     <div class="card" id="talent-card" *ngFor="let industry of industryArr; let i = index" style="width: 18rem">
       <img src="{{industry.industryImage}}" class="card-img-top" alt="{{industry.industryName}}" />
