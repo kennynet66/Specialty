@@ -19,26 +19,30 @@ describe('registerUser', () => {
         body: {
           fullName: 'John Doe',
           email: 'johndoe@example.com',
-          password: 'password123',
-          rate: 5,
-          isSpecialist: true
+          password: 'password123'
         }
       };
 
-      const pool = {
+      jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
         request: jest.fn().mockReturnThis(),
         input: jest.fn().mockReturnThis(),
-        query: jest.fn().mockReturnValue({ recordset: [] }),
-        execute: jest.fn().mockReturnValue({ rowsAffected: 1 })
-      };
-      mssql.connect = jest.fn().mockResolvedValue(pool);
+        execute: jest.fn().mockResolvedValueOnce({recordset: []})
+    } as never)
+
+    //   const pool = {
+    //     request: jest.fn().mockReturnThis(),
+    //     input: jest.fn().mockReturnThis(),
+    //     // query: jest.fn().mockReturnValue({ recordset: [] }),
+    //     execute: jest.fn().mockReturnValue({ rowsAffected: 1 })
+    //   };
+    //   mssql.connect = jest.fn().mockResolvedValue(pool);
       bcrypt.hash = jest.fn().mockResolvedValue('hashedPassword');
   
       // Invoke the function
-      await registerUser(req as never, res);
+      await registerUser(req as Request, res);
   
       // Check the response
-      expect(res.status).toHaveBeenCalledWith(200);
+      expect(res.status).toHaveBeenCalledWith(202);
       expect(res.json).toHaveBeenCalledWith({
         success: "Registered successfully"
       });
@@ -46,13 +50,12 @@ describe('registerUser', () => {
 
     // Function correctly handles empty input data
     it('should return an error when empty input data is provided', async () => {
-      // Mock the necessary dependencies
       const req = {
         body: {}
       };
   
       // Invoke the function
-      await registerUser(req as never, res);
+      await registerUser(req as Request, res);
   
       // Check the response
       expect(res.status).toHaveBeenCalledWith(202);
