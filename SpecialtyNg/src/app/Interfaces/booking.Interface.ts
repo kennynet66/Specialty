@@ -1,6 +1,11 @@
 export interface bookingResponse {
     bookings: [
         {
+            fullName: string,
+            email: string
+            profileImg: string
+            sentTo: string,
+            requestedPic: string,
             bookingId: string,
             userId: string,
             specialitId: string,
@@ -15,6 +20,11 @@ export interface bookingResponse {
 }
 
 export interface Booking {
+    fullName: string,
+    email: string,
+    sentTo: string,
+    requestedPic: string,
+    profileImg: string
     bookingId: string,
     userId: string,
     specialitId: string,

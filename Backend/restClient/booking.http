@@ -9,4 +9,12 @@ Content-Type: application/json
 
 
 ### User bookings
-GET http://localhost:3900/bookings/user-bookings/c58b30b2-07f3-44e7-84a0-714e445ef954
+GET http://localhost:3900/bookings/user-bookings/373a0664-9937-4a1c-b263-c55ac4c4d71a
+
+
+### cancel booking
+PUT http://localhost:3900/bookings/cancel-booking/c58b30b2-07f3-44e7-84a0-714e445ef954
+
+### Get canceled bookings
+
+GET  http://localhost:3900/bookings/canceled-bookings/373a0664-9937-4a1c-b263-c55ac4c4d71a

@@ -1,6 +1,4 @@
 <section class="more-details">
-  <div *ngIf="successDiv" class="success-msg">{{successMsg}}</div>
-  <div *ngIf="errorDiv" class="error-msg">{{errorMsg}}</div>
   <div class="form">
     <form [formGroup]="moreDetailsForm" (ngSubmit)="updatedetails()">
       <h2 class="text-2xl m-2">Personal Information</h2>
@@ -37,6 +35,7 @@
         <h2 class="text-2xl m-2">Address information</h2>
         <select name="country" id="country" formControlName="country">
           <option value="">Select your country</option>
+          <option value="kenya" >Kenya</option>
           <option *ngFor="let country of countriesArr | search: filter; let i = index" value="kenya">{{country.name}}-
             {{country.iso2}}</option>
         </select>

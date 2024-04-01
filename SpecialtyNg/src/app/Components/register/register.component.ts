@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,26 @@ export class RegisterComponent {
   errorDiv= false;
   successDiv = false
   registerForm!: FormGroup;
+
+  showSuccess(msg: string) {
+    Swal.fire({
+      icon: 'success',
+      title: msg,
+      timerProgressBar: true,
+      timer: 2000,
+      showConfirmButton: false
+    })
+  }
+
+  showError(msg:string){
+    Swal.fire({
+      icon: 'error',
+      title: msg,
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    })
+  }
 
   displaySuccess(msg: string, route: string){
     this.successMsg = msg
@@ -47,14 +68,17 @@ export class RegisterComponent {
     if(this.registerForm.valid){
       this.authservice.registerUser(this.registerForm.value).subscribe(res =>{
         if(res.success){
-          this.displaySuccess(res.success, '/verify-email')
+          this.showSuccess(res.success)
+          setTimeout(() => {
+            this.router.navigate(['/verify-email'])
+          }, 2000);
         } else if (res.error) {
-          this.displayError(res.error)
+          this.showError(res.error)
         }
       })
     } else {
-      this.displayError('Please fill in all fields correctly')
+      this.showError('Please fill in all fields before submitting')
     }
   }
 }
-{}
+

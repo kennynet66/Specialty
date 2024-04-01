@@ -3,7 +3,7 @@ POST http://localhost:3900/industry/new
 Content-Type: application/json
 
 {
-    "industryName": "QA/QE",
+    "industryName": "Software development",
     "industryImage": "../../../assets/stats.png"
 }
 

@@ -4,6 +4,7 @@ import { allIndustriesResponse, countriesApiResponse, specialistResponse, update
 import { oneUserResponse } from '../Interfaces/user.Interface';
 import { createInterfaceResponse, reviewsResponse } from '../Interfaces/reviews.Interface';
 import { bookingResponse } from '../Interfaces/booking.Interface';
+import { sbookingResponse } from '../Interfaces/sBooking.Interface';
 // import { reviewsResponse } from '../Interfaces/review.Interface'
 
 @Injectable({
@@ -67,6 +68,18 @@ export class DataService {
 
   acceptBooking(bookingId: string){
     return this.http.put<{success: string}>(`http://localhost:3900/bookings/accept-booking/${bookingId}`, {})
+  }
+
+  cancelBooking(bookingId: string){
+    return this.http.put<{success: string, error: string}>(`http://localhost:3900/bookings/cancel-booking/${bookingId}`, {})
+  }
+
+  canceledBookings(userId: string){
+    return this.http.get<bookingResponse>(`http://localhost:3900/bookings/canceled-bookings/${userId}`)
+  }
+
+  getSBookings(specialistId: string) {
+    return this.http.get<sbookingResponse>(`http://localhost:3900/sbookings/bookings/${specialistId}`)
   }
 }
 

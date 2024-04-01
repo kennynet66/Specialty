@@ -16,8 +16,10 @@ import { HistoryComponent } from './Components/history/history.component';
 import { SingleSpecialistComponent } from './Components/Users/single-specialist/single-specialist.component';
 import { UserMessageComponent } from './Components/Users/user-message/user-message.component';
 import { SpecialistMessageComponent } from './Components/Specialist/specialist-message/specialist-message.component';
+import { SpecialistHomeComponent } from './Components/Specialist/specialist-home/specialist-home.component';
 
 export const routes: Routes = [
+  // General components
   {path: '', component: LandingComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
@@ -25,6 +27,8 @@ export const routes: Routes = [
   {path: 'verify-email', component: VerifyEmailComponent},
   {path: 'verify/:id', component: VerifyComponent},
   {path: 'details/:id', component: DetailsComponent},
+
+  // User components
   {path: 'user-dashboard', component: UserDashboardComponent,
   children: [
     {path: 'messages/:id', component: UserMessageComponent},
@@ -34,9 +38,13 @@ export const routes: Routes = [
     {path: 'specialist/:id', component: SingleSpecialistComponent},
   ]},
   {path: 'more-details/:id', component: MoreDetailsComponent},
+
+  // Specialist components
   {path: 'specialist-dashboard', component: SpecialistDashboardComponent, children: [
     {path: 'messages', component: SpecialistMessageComponent},
-    {path: 'profile/:id', component: ProfileComponent}
+    {path: 'home', component: SpecialistHomeComponent },
+    {path: 'profile/:id', component: ProfileComponent},
+    {path: 'history', component: HistoryComponent}
   ]},
   {path: '**', component: NotFoundComponent}
 ];

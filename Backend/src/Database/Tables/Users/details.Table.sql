@@ -9,6 +9,7 @@ CREATE TABLE Details(
     dateJoined DATETIME,
     about text,
     bankAcNo BIGINT,
+    rate INT DEFAULT 0 NOT NULL,
     bankAcName VARCHAR(255),
     industry VARCHAR(255)
 	CONSTRAINT fk_user_id FOREIGN KEY(userId)

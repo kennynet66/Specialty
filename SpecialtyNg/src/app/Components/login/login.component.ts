@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../Services/auth.service';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -18,22 +18,26 @@ export class LoginComponent {
   successDiv = false;
   errorMsg!: string;
   successMsg!: string;
-  displaySuccess(msg: string, route: string){
-    this.loginForm.reset();
-    this.successMsg = msg
-    this.successDiv = true;
-    setTimeout(() => {
-      this.successDiv = false
-      this.router.navigate([route])
-    }, 2000);
-  };
-  displayError(msg: string){
-    this.errorMsg = msg,
-    this.errorDiv = true;
-    setTimeout(() => {
-      this.errorDiv = false;
-    }, 2000);
-  };
+
+  showSuccess(msg: string) {
+    Swal.fire({
+      icon: 'success',
+      title: msg,
+      timerProgressBar: true,
+      timer: 2000,
+      showConfirmButton: false
+    })
+  }
+
+  showError(msg:string){
+    Swal.fire({
+      icon: 'error',
+      title: msg,
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true
+    })
+  }
 
   constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService, private renderer: Renderer2, private el: ElementRef){
     this.loginForm = this.fb.group({
@@ -49,27 +53,39 @@ export class LoginComponent {
   loginUser(){
     if(this.loginForm.valid){
       this.authservice.loginUser(this.loginForm.value).subscribe(res =>{
+        console.log(res);
+        
         if(res.success){
           
           this.authservice.checkUserDetails(res.token).subscribe(response => {
             console.log(response);
             if(response.info.role ==='user'){
-              this.displaySuccess(res.success, '/user-dashboard/home')
+              // this.displaySuccess(res.success, '/user-dashboard/home')
+              this.showSuccess(res.success)
+              setTimeout(() => {
+                this.router.navigate(['/user-dashboard/home'])
+              }, 2000);
               this.saveToken(res.token);
             } else if(response.info.role === 'specialist'){
+              this.showSuccess(res.success)
+              setTimeout(() => {
+                this.router.navigate(['/specialist-dashboard/home'])
+              }, 2000);
               this.saveToken(res.token);
-              this.displaySuccess(res.success, '/specialist-dashboard')
             } else if(response.info.isAdmin) {
+              this.showSuccess(res.success)
+              setTimeout(() => {
+                this.router.navigate(['/admin'])
+              }, 2000);
               this.saveToken(res.token);
-              this.displaySuccess(res.success, '/admin-dashboard')
             } else if(response.info.role === 'NULL') {}
           })
         } else if(res.error){
-          this.displayError(res.error)
+          this.showError(res.error)
         }
       })
     } else if (!this.loginForm.valid){
-      this.displayError('Please fill in all the fields correctly')
+      this.showError('Please fill in all the fields before submitting')
     }
   }
 }

@@ -45,4 +45,31 @@ export class UserSidebarComponent {
       }
     })
   }
+
+  navigateToHistory(){
+    this.authservice.checkUserDetails(this.token).subscribe(res => {
+      if(res.info){
+        if(res.info.role === 'specialist'){
+          this.router.navigate(['specialist-dashboard/history'])
+        }else if(res.info.role === 'user'){
+          this.router.navigate(['user-dashboard/history'])
+        }
+        
+      }
+    })
+  }
+  
+  navigateToHome(){
+    this.authservice.checkUserDetails(this.token).subscribe(res => {
+      if(res.info){
+        if(res.info.role === 'specialist'){
+          this.router.navigate(['specialist-dashboard/home'])
+        }else if(res.info.role === 'user'){
+          this.router.navigate(['user-dashboard/home'])
+        }
+        
+      }
+    })
+
+  }
 }

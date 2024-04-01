@@ -48,11 +48,11 @@ export const acceptBooking = (async (req: Request, res: Response) => {
 
 export const cancelBooking = (async (req: Request, res: Response) => {
     try {
-        const BookingId = req.params.id;
+        const bookingId = req.params.id;
 
         let procedure = 'cancelBooking';
 
-        const result = (await execute(procedure, ))
+        const result = (await execute(procedure, {bookingId}))
 
         return res.status(200).json({
             success: "Booking canceled successfully"
@@ -90,6 +90,24 @@ export const getUserBookings = (async (req: Request, res: Response) =>{
         let procedure = "userBookings"
 
         const bookings = (await execute(procedure, {userId})).recordset
+
+        return res.status(200).json({
+            bookings
+        })
+    } catch (error) {
+        return res.status(500).json({
+            error
+        })
+    }
+})
+
+export const getCancelledBookings = (async (req: Request, res: Response)=>{
+    try {
+        const userId = req.params.id;
+
+        let procedure = 'canceledBookings';
+
+        let bookings = (await execute(procedure, {userId})).recordset
 
         return res.status(200).json({
             bookings

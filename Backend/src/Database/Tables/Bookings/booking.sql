@@ -7,9 +7,13 @@ CREATE TABLE Booking(
     duration INT,
     jobDescription text,
     salary INT,
-    isCompleted BIT DEFAULT 0 NOT NULL
+    isCompleted BIT DEFAULT 0 NOT NULL,
+    isCanceled BIT DEFAULT 0 NOT NULL
 )
 
-ALTER TABLE Booking ADD isCanceled BIT DEFAULT 0 NOT NULL
+ALTER TABLE Booking ADD isAccepted BIT DEFAULT 0 NOT NULL
 
 ALTER TABLE Booking DROP COLUMN icCanceled
+
+
+SELECT * FROM Users

@@ -7,6 +7,7 @@ import userRoutes from './Routes/user.Routes';
 import chatRoutes from './Routes/chat.Routes';
 import reviewRoutes from './Routes/reviews.Routes';
 import bookingRoutes from './Routes/booking.Routes';
+import sBookingRoutes from './Routes/sBooking.Routes';
 dotenv.config();
 
 const app = express();
@@ -23,6 +24,7 @@ app.use('/users', userRoutes);
 app.use('/chats', chatRoutes);
 app.use('/reviews', reviewRoutes);
 app.use('/bookings', bookingRoutes)
+app.use('/sbookings', sBookingRoutes)
 
 app.listen(PORT, () => {
     console.log('App is listening on port', PORT);

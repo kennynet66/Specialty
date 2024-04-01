@@ -12,6 +12,7 @@
                     <div class="relative flex flex-row items-center p-4" style="cursor: pointer;" *ngFor="let chat of chats">
                         <div class="flex flex-col flex-grow ml-3" (click)="getMessages(chat.chatId)">
                             <div class="text-sm font-medium">{{chat.fullName}}</div>
+                            <div class="text-sm font-medium">{{messages[messages.length - 1].message}}</div>
                             <div class="text-xs truncate w-40">{{chat.startedAt}}</div>
                         </div>
                     </div>
@@ -25,7 +26,7 @@
     <div class="flex flex-col h-full w-full bg-white px-4 py-6">
         <div class="flex flex-row items-center py-4 px-6 rounded-2xl shadow">
             <div class="flex flex-col ml-3">
-                <div class="font-semibold text-sm">SENDIT</div>
+                <div class="font-semibold text-sm"></div>
             </div>
         </div>
         <div class="h-full overflow-hidden py-4">
@@ -37,7 +38,7 @@
                                 class="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 flex-shrink-0">
                                 <img src="https://picsum.photos/50/50" style="border-radius: 100%;" alt="">
                             </div>
-                            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                            <div class="relative ml-3 text-sm bg-green-500 text-white py-2 px-4 shadow rounded-xl">
                                 <div>
                                     {{message.message}}
                                 </div>
@@ -48,7 +49,7 @@
                                 class="flex items-center justify-center h-10 w-10 rounded-full bg-green-500 text-white flex-shrink-0">
                                 <img src="https://picsum.photos/52/52" style="border-radius: 100%;" alt="">
                             </div>
-                            <div class="relative ml-3 text-sm bg-green-500 py-2 px-4 shadow rounded-xl  text-white">
+                            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
                                 <div>
                                     {{message.message}}
                                 </div>
