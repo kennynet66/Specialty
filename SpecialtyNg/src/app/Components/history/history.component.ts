@@ -46,12 +46,22 @@ export class HistoryComponent {
         })
 
       })
+    } else if(this.role === 'specialist') {
+      this.dataservice.sCancelledBookings(userId).subscribe(res => {
+        console.log(res);
+        
+        res.bookings.forEach(booking => {
+          this.cancelledBookings.push(booking)
+        })
+      })
     }
   }
 
   getUserBookings(userId: string) {
     if (this.role === 'user') {
       this.dataservice.getUserBookings(userId).subscribe(res => {
+        console.log(res);
+        
         res.bookings.forEach(booking => {
           this.pendingBookings.push(booking)
         })

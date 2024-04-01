@@ -1,2 +1,5 @@
 ### Get specialist bookings
 GET http://localhost:3900/sbookings/bookings/5051b85f-3aa9-4a3c-a3d3-139330f0adf5
+
+### Get specialist cancelled bookings
+GET http://localhost:3900/sbookings/cancelled/5051b85f-3aa9-4a3c-a3d3-139330f0adf5

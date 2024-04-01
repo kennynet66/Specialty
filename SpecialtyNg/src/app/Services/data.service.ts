@@ -78,6 +78,10 @@ export class DataService {
     return this.http.get<bookingResponse>(`http://localhost:3900/bookings/canceled-bookings/${userId}`)
   }
 
+  sCancelledBookings(specialistId: string){
+    return this.http.get<bookingResponse>(`http://localhost:3900/sbookings/cancelled/${specialistId}`)
+  }
+
   getSBookings(specialistId: string) {
     return this.http.get<sbookingResponse>(`http://localhost:3900/sbookings/bookings/${specialistId}`)
   }
