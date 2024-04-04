@@ -17,6 +17,7 @@ export class HistoryComponent {
 
   cancelledBookings: Booking[] = [];
   pendingBookings: Booking[] = [];
+  acceptedBookings: Booking[] = [];
   userId!: string;
   role!: string;
 
@@ -60,11 +61,14 @@ export class HistoryComponent {
   getUserBookings(userId: string) {
     if (this.role === 'user') {
       this.dataservice.getUserBookings(userId).subscribe(res => {
-        console.log(res);
-        
+        console.log(res)
         res.bookings.forEach(booking => {
           this.pendingBookings.push(booking)
         })
+      })
+    } else if (this.role === 'specialist') {
+      this.dataservice.getSAcceptedBookings(userId).subscribe(res => {
+        res.bookings.forEach(booking => this.acceptedBookings.push(booking))
       })
     }
   }

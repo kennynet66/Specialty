@@ -85,6 +85,10 @@ export class DataService {
   getSBookings(specialistId: string) {
     return this.http.get<sbookingResponse>(`http://localhost:3900/sbookings/bookings/${specialistId}`)
   }
+
+  getSAcceptedBookings(specialistId: string) {
+    return this.http.get<bookingResponse>(`http://localhost:3900/sbookings/accepted/${specialistId}`)
+  }
 }
 
 interface bookingDetails {

@@ -6,7 +6,6 @@ import { NotFoundComponent } from './Components/not-found/not-found.component';
 import { VerifyEmailComponent } from './Components/verify-email/verify-email.component';
 import { VerifyComponent } from './Components/verify/verify.component';
 import { DetailsComponent } from './Components/details/details.component';
-import { UserDashboardComponent } from './Components/Users/user-dashboard/user-dashboard.component';
 import { MoreDetailsComponent } from './Components/more-details/more-details.component';
 import { SpecialistDashboardComponent } from './Components/Specialist/specialist-dashboard/specialist-dashboard.component';
 import { ProfileComponent } from './Components/profile/profile.component';
@@ -17,6 +16,7 @@ import { SingleSpecialistComponent } from './Components/Users/single-specialist/
 import { UserMessageComponent } from './Components/Users/user-message/user-message.component';
 import { SpecialistMessageComponent } from './Components/Specialist/specialist-message/specialist-message.component';
 import { SpecialistHomeComponent } from './Components/Specialist/specialist-home/specialist-home.component';
+import { UserDashboardComponent } from './Components/Users/user-dashboard/user-dashboard.component';
 
 export const routes: Routes = [
   // General components
