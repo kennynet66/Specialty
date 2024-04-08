@@ -11,8 +11,8 @@
       <div class="d-flex">
         <!-- <a routerLink="/contact" class="m-2 text-white cursor-pointer"  style="color: #29AB87;">Contact</a> -->
         <div class="contact m-2" *ngIf="!isLogged" routerLink="/contact" style="cursor: pointer;">Contact</div>
-        <div class="login m-2" *ngIf="!isLogged" routerLink="/login" style="cursor: pointer;">Login</div>
-        <div class="signup m-2" *ngIf="!isLogged" routerLink="/register" style="cursor: pointer;">Sign up</div>
+        <div class="login m-2" *ngIf="!isLogged" routerLink="/login" style="cursor: pointer;" data-cy="toLogin-btn">Login</div>
+        <div class="signup m-2" *ngIf="!isLogged" routerLink="/register" style="cursor: pointer;" data-cy="toRegister-btn">Sign up</div>
       <div class="logout m-2 bg-red-600 text-white btn hover:bg-red-700" *ngIf="isLogged" style="cursor: pointer;" (click)="logout()" >Logout</div>
         </div>
     </div>

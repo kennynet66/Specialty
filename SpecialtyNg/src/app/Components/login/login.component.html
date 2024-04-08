@@ -9,11 +9,11 @@
       <h2 style="font-size: 25px;">Get back to your account</h2>
       <p>Don't have an account? <a routerLink="/register">Create one!</a></p>
       <div class="input-div m-2">
-        <input type="email" placeholder="Email" class="form-control" formControlName = "email">
+        <input type="email" placeholder="Email" class="form-control" formControlName = "email" data-cy="login-email">
         <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" id="error">Email is required</div>
       </div>
       <div class="input-div m-2">
-        <input type="password" placeholder="password" class="form-control" formControlName="password">
+        <input type="password" placeholder="password" class="form-control" formControlName="password" data-cy="login-password">
         <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" id="error">Password is required</div>
       </div>
       <p style="text-align: center;">Or continue with</p>
