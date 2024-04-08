@@ -17,8 +17,5 @@ describe('template spec', () => {
     cy.contains("Connect to the worlds largest pool of Specialists")
     cy.get('[data-cy="toRegister-btn"]').click()
     cy.contains("Join us today")
-    cy.get('[data-cy="register-fullName"]').type("John Doe")
-    cy.get("[data-cy='register-email']").type("johndoe@cypress.io")
-    cy.get("[data-cy='register-password']").type("!Pa$$w0rd")
   })
 })

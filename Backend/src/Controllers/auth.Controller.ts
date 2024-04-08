@@ -32,16 +32,6 @@ export const registerUser = (async (req: Request, res: Response) => {
             })
         }
         const pool = await mssql.connect(sqlConfig);
-        // Check if user exists
-        const userExists = (await pool.request()
-            .input('email', mssql.VarChar, userDetails.email.trim().toLocaleLowerCase())
-            .query('SELECT * FROM Users WHERE email = @email')).recordset
-
-        if (userExists.length >= 1) {
-            return res.status(202).json({
-                error: "User with that email already exists"
-            })
-        }
 
         const hashPwd = await bcrypt.hash(userDetails.password, 5);
 
@@ -72,7 +62,8 @@ export const loginUser = (async (req: Request, res: Response) => {
         const user = (await pool.request()
             .input('email', mssql.VarChar, loginDetails.email)
             .query('SELECT * FROM Users WHERE email = @email')).recordset;
-
+        console.log(user);
+        
         if (user.length < 1) {
             return res.status(202).json({
                 error: "User not found"
