@@ -1,7 +1,7 @@
 import mssql from 'mssql'
 import { loginUser, registerUser } from '../auth.Controller';
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
+import * as authController from '../auth.Controller'
 
 describe("Successfully registers a valid user", () => {
   let res: any;
@@ -140,45 +140,38 @@ describe("It successfully logs in a valid user", () => {
     }
   })
 
-  it("Successfully logs in a user", () => {
-    let expectedUser = {
-      userId: '373a0664-9937-4a1c-b263-c55ac4c4d71a',
-      fullName: 'John Doe',
-      email: 'test@jestjs.io',
-      password: '$2b$05$41vZvHmwbvn26Vvy1a.xxeDmVoI24BdOLcQS1qlpXshZXJlnq1S1i',
-      role: 'user',
-      isAdmin: false,
-      isVerified: true,
-      isWelcomed: true,
-      profileImg: 'http://res.cloudinary.com/dtvrzfi1b/image/upload/v1712052441/fqjmyu1vovcdzeokxv8c.jpg'
-    }
-
+  // Successfully login with correct credentials
+  it('should login successfully with correct credentials', async () => {
+    // Mock the request and response objects
     const req = {
       body: {
-        email: "test@jestjs.io",
-        password: "correct password"
+        email: 'test@example.com',
+        password: 'password123'
       }
-    }
+    };
 
-    jest.spyOn(mssql, 'connect').mockResolvedValueOnce({
+    // Mock the mssql.connect function
+    const mockPool = {
       request: jest.fn().mockReturnThis(),
       input: jest.fn().mockReturnThis(),
-      query: jest.fn().mockResolvedValueOnce({ recordSet: [expectedUser] })
-    } as never)
-    jest.spyOn(bcrypt, 'compare').mockResolvedValueOnce(true as never)
+      query: jest.fn().mockResolvedValue({ recordset: [{ email: 'test@example.com', password: 'hashedPassword', isVerified: true }] })
+    };
+    jest.spyOn(mssql, 'connect').mockResolvedValue(mockPool as never);
 
-    function mockCreateToken() {
-      const token = jest.spyOn(jwt, 'sign').mockReturnValueOnce("generated token gftfgfju09j2nd209n29j" as never)
-      return token
-    }
+    // Mock the bcrypt.compare function
+    jest.spyOn(bcrypt, 'compare').mockResolvedValue(true as never);
 
-    const token = mockCreateToken().mockReturnValue()
+    // Mock the createToken function
+    jest.spyOn(authController, 'createToken').mockReturnValue('token');
 
-    loginUser(req as any, res)
+    // Call the loginUser function
+    await authController.loginUser(req as any, res);
 
+    // Assertions
+    expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
-      success: "Login successful",
-      token
-    })
-  })
+      success: 'Login successful',
+      token: expect.any(String)
+    });
+  });
 })

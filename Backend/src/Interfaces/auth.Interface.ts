@@ -14,5 +14,5 @@ export interface Login {
 export interface Token {
     fullName: string,
     email: string,
-    isAdmin: string
+    isAdmin: boolean
 }

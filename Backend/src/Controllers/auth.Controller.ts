@@ -11,7 +11,7 @@ import { ExtendedUserRequest } from "../Middleware/verifyToken";
 
 dotenv.config();
 
-function createToken(user: Token) {
+export function createToken(user: Token) {
     const token = jwt.sign(user, process.env.SECRET as string, {
         expiresIn: 3 * 24 * 24 * 60
     })
