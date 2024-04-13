@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserMessageComponent } from './user-message.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserMessageComponent', () => {
   let component: UserMessageComponent;
@@ -8,7 +9,7 @@ describe('UserMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserMessageComponent]
+      imports: [UserMessageComponent, HttpClientTestingModule]
     })
     .compileComponents();
     

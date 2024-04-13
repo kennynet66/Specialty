@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminSidebarComponent } from './admin-sidebar.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AdminSidebarComponent', () => {
   let component: AdminSidebarComponent;
@@ -8,7 +9,7 @@ describe('AdminSidebarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AdminSidebarComponent]
+      imports: [AdminSidebarComponent, HttpClientTestingModule]
     })
     .compileComponents();
     

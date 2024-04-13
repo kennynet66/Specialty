@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SpecialistDashboardComponent } from './specialist-dashboard.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SpecialistDashboardComponent', () => {
   let component: SpecialistDashboardComponent;
@@ -8,7 +9,7 @@ describe('SpecialistDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpecialistDashboardComponent]
+      imports: [SpecialistDashboardComponent, HttpClientTestingModule]
     })
     .compileComponents();
     
