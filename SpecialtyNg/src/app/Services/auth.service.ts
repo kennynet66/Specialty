@@ -13,7 +13,7 @@ export class AuthService {
     return this.http.post<signupResponse>('http://localhost:3900/auth/register', userDetails)
   }
   validateUser(userId: string){
-    return this.http.put<{success:string, token:string, error: string}>(` http://localhost:3900/auth/validate-user/${userId}`, {})
+    return this.http.put<{success:string, token:string, error: string}>(`http://localhost:3900/auth/validate-user/${userId}`, {})
   }
   loginUser(userDetails: loginDetails){
     return this.http.post<{success: string, token: string, error: string}>('http://localhost:3900/auth/login', userDetails)

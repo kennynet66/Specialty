@@ -11,10 +11,10 @@ describe("Successfully registers a valid user", () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn().mockReturnThis()
     }
-  })
+  });
 
   // Successfully registers a user if the data is valid
-  it("Successfully registers a user", async () => {
+  it("Successfully registers a valid user", async () => {
     const req = {
       body: {
         fullName: "John Doe",
@@ -45,7 +45,7 @@ describe("Successfully registers a valid user", () => {
   })
 
   // When an empty body is parsed
-  it("returns an error when an empty body is parsed", () => {
+  it("Returns an error when an empty body is parsed", () => {
     const req = {
       body: {}
     }
@@ -56,7 +56,7 @@ describe("Successfully registers a valid user", () => {
     expect(res.status).toHaveBeenCalledWith(202)
   })
   // When the fullName field is empty
-  it("returns an error when the fullName field is empty", () => {
+  it("Returns an error when the fullName field is empty", () => {
     const req = {
       body: {
         fullName: "",
@@ -71,7 +71,7 @@ describe("Successfully registers a valid user", () => {
     expect(res.status).toHaveBeenCalledWith(202)
   })
   // When the email field is empty
-  it("returns an error when the email field is empty", () => {
+  it("Returns an error when the email field is empty", () => {
     const req = {
       body: {
         fullName: "John Doe",
@@ -86,7 +86,7 @@ describe("Successfully registers a valid user", () => {
     expect(res.status).toHaveBeenCalledWith(202)
   })
   // When password field is empty
-  it("returns an error when the email field is empty", () => {
+  it("Returns an error when the password field is empty", () => {
     const req = {
       body: {
         fullName: "John Doe",
@@ -101,7 +101,7 @@ describe("Successfully registers a valid user", () => {
     expect(res.status).toHaveBeenCalledWith(202)
   })
   // Email field is MIA
-  it("returns an error when the email field is missing", () => {
+  it("Returns an error when the email field is missing", () => {
     const req = {
       body: {
         fullName: "John Doe",
@@ -115,7 +115,7 @@ describe("Successfully registers a valid user", () => {
     expect(res.status).toHaveBeenCalledWith(202)
   })
   // Password field is MIA
-  it("returns an error when the email field is missing", () => {
+  it("Returns an error when the password field is missing", () => {
     const req = {
       body: {
         fullName: "John Doe",
@@ -138,11 +138,9 @@ describe("It successfully logs in a valid user", () => {
       json: jest.fn().mockReturnThis(),
       status: jest.fn().mockReturnThis()
     }
-  })
+  });
 
-  // Successfully login with correct credentials
-  it('should login successfully with correct credentials', async () => {
-    // Mock the request and response objects
+  it('Successfully logs in a valid user', async () => {
     const req = {
       body: {
         email: 'test@example.com',
@@ -150,7 +148,6 @@ describe("It successfully logs in a valid user", () => {
       }
     };
 
-    // Mock the mssql.connect function
     const mockPool = {
       request: jest.fn().mockReturnThis(),
       input: jest.fn().mockReturnThis(),
@@ -158,13 +155,10 @@ describe("It successfully logs in a valid user", () => {
     };
     jest.spyOn(mssql, 'connect').mockResolvedValue(mockPool as never);
 
-    // Mock the bcrypt.compare function
     jest.spyOn(bcrypt, 'compare').mockResolvedValue(true as never);
 
-    // Mock the createToken function
     jest.spyOn(authController, 'createToken').mockReturnValue('token');
 
-    // Call the loginUser function
     await authController.loginUser(req as any, res);
 
     // Assertions
@@ -174,4 +168,75 @@ describe("It successfully logs in a valid user", () => {
       token: expect.any(String)
     });
   });
-})
+
+  // Email tests
+  it("Returns an error when body is empty", () => {
+    const req = {
+      body: {}
+    }
+
+    loginUser(req as any, res);
+
+    // Assertions
+    expect(res.json).toHaveBeenCalledWith({ "error": "\"email\" is required" })
+    expect(res.status).toHaveBeenCalledWith(202)
+  })
+
+  it("Returns an error when email field is missing", () => {
+    const req = {
+      body: {
+        password: "!Pa$$w0rd."
+      }
+    }
+
+    loginUser(req as any, res);
+
+    // Assertions
+    expect(res.json).toHaveBeenCalledWith({ "error": "\"email\" is required" })
+    expect(res.status).toHaveBeenCalledWith(202)
+  })
+
+  it("Returns an error when email field is empty", () => {
+    const req = {
+      body: {
+        email: "",
+        password: "!Pa$$w0rd."
+      }
+    }
+
+    loginUser(req as any, res);
+
+    // Assertions
+    expect(res.json).toHaveBeenCalledWith({ "error": "\"email\" is not allowed to be empty" })
+    expect(res.status).toHaveBeenCalledWith(202)
+  })
+
+  // Password test cases
+  it("Returns an error when password field is missing", () => {
+    const req = {
+      body: {
+        email: "test@test.com"
+      }
+    };
+
+    loginUser(req as any, res);
+
+    expect(res.status).toHaveBeenCalledWith(202);
+    expect(res.json).toHaveBeenCalledWith({ "error": "\"password\" is required" })
+  });
+
+  it('Returns an error when the password field is empty', () => {
+    const req = {
+      body: {
+        email: "test@test.com",
+        password: ""
+      }
+    };
+
+    loginUser(req as any, res);
+
+    expect(res.json).toHaveBeenCalledWith({ "error": "\"password\" is not allowed to be empty" });
+    expect(res.status).toHaveBeenCalledWith(202)
+  });
+
+});

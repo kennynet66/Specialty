@@ -1,6 +1,5 @@
-import { Component, Renderer2, OnInit } from '@angular/core';
-import { AuthService } from '../../Services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '../../Interfaces/user.Interface';
 import { DataService } from '../../Services/data.service';
 import { CommonModule } from '@angular/common';
@@ -65,7 +64,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private dataservice: DataService,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    public route: ActivatedRoute
   ) { 
     this.updateForm = this.fb.group({
       gender: ['', [Validators.required]],

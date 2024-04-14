@@ -1,6 +1,6 @@
 import { Request, Response, response } from "express";
 import { Login, Token, User } from "../Interfaces/auth.Interface";
-import { registerSchema } from "../Validators/auth.Validator";
+import { loginSchema, registerSchema } from "../Validators/auth.Validator";
 import { sqlConfig } from "../Config/sql.Config";
 import mssql from 'mssql';
 import bcrypt from 'bcrypt';
@@ -22,9 +22,9 @@ export const registerUser = (async (req: Request, res: Response) => {
     try {
         const userDetails: User = req.body;
 
-        const userId = v4();
-
         const { error } = registerSchema.validate(req.body);
+        
+        const userId = v4();
 
         if (error) {
             return res.status(202).json({
@@ -56,6 +56,14 @@ export const registerUser = (async (req: Request, res: Response) => {
 export const loginUser = (async (req: Request, res: Response) => {
     try {
         const loginDetails: Login = req.body;
+
+        const { error } =loginSchema.validate(req.body);
+
+        if(error) {
+            return res.status(202).json({
+                error: error.details[0].message
+            })
+        }
 
         const pool = await mssql.connect(sqlConfig);
 
