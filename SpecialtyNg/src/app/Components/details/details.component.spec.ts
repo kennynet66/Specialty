@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -9,7 +11,15 @@ describe('DetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetailsComponent, HttpClientTestingModule]
+      imports: [DetailsComponent, HttpClientTestingModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            provide: of({id: "dyufguehoifhoeihjhhehv"})
+          }
+        }
+      ]
     })
     .compileComponents();
     

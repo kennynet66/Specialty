@@ -4,8 +4,6 @@ import { ProfileComponent } from './profile.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-// import 'rxjs/add/observable/of';
-// from
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
