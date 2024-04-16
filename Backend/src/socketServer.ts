@@ -5,6 +5,7 @@ import cors from 'cors';
 import { v4 } from 'uuid';
 import { log } from 'console';
 import { createConversation } from './Chat/chat_Functions/create.conversation';
+import { execute } from './dbHelper/dbHelper';
 
 const app = express();
 app.use(cors());
@@ -18,17 +19,30 @@ const io = new Server(httpServer, {
 
 const connectedUsers: Map<string, Socket> = new Map();
 
-io.on('connection', (socket: Socket) => {
+io.on('connection', async (socket: Socket) => {
     const chatId = v4();
     // Get the Id of the connected user who is a potential message sender
     const senderId: string = socket.handshake.headers.senderid as string;
     // Keep track of the connected users
     connectedUsers.set(senderId, socket);
 
-    console.log('A client connected', socket.id, 'with userId:', senderId);
+    try {
+        const userId = senderId;
+
+        let procedure = "userChats"
+
+        const chats = (await execute(procedure, {userId})).recordset
+
+        console.log(chats);
+        
+    } catch (error) {
+        return error
+    }
+
+    // console.log('A client connected', socket.id, 'with userId:', senderId);
 
     socket.on('message', (message: { message: string, recipientId: string }) => {
-    console.log('Received message:', message.message, "To be sent to", message.recipientId);
+    // console.log('Received message:', message.message, "To be sent to", message.recipientId);
 
     // Get the Id of the user
     const recipientSocket = connectedUsers.get(message.recipientId);
@@ -41,9 +55,9 @@ io.on('connection', (socket: Socket) => {
     message: message.message,
     senderId: senderId
     });
-    console.log("emitting to recipient", message.recipientId);
+    // console.log("emitting to recipient", message.recipientId);
     } else {
-    console.log("Recipient with userId", message.recipientId, "is not connected.");
+    // console.log("Recipient with userId", message.recipientId, "is not connected.");
     }
     });
 
